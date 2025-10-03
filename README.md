@@ -1,92 +1,104 @@
-이 프로젝트는 [`EasyNext`](https://github.com/easynext/easynext)를 사용해 생성된 [Next.js](https://nextjs.org) 프로젝트입니다.
+# SuperNext
+
+A production-ready Next.js 15 template bootstrapped with EasyNext and tuned for rapid feature delivery.
+
+## Overview
+- App Router architecture with a Hono backend mounted under `app/api/[[...hono]]`.
+- Supabase integration (service-role on server, anon on client) validated by Zod.
+- Client-only UI built with React 19, shadcn/ui, Tailwind CSS 4, and @tanstack/react-query.
+- Opinionated tooling: ESLint, TypeScript, Playwright, Turbopack-friendly dev workflow.
+
+## Tech Stack
+- Frameworks: Next.js 15, React 19, Hono
+- UI & Styling: Tailwind CSS 4, shadcn/ui, lucide-react, framer-motion
+- State & Data: @tanstack/react-query, Zustand, React Hook Form
+- Validation & Utilities: Zod, ts-pattern, date-fns, es-toolkit, react-use
+- Backend & Infra: Supabase (SQL migrations in `supabase/migrations`)
+
+## Directory Layout
+```
+src/
+  app/                Next.js App Router entrypoints (all client components)
+    api/[[...hono]]/  Route handler delegating to the Hono app
+  backend/            Hono app, middleware, Supabase wrappers, config
+  components/         shadcn/ui primitives and shared UI
+  features/           Feature modules (components, hooks, backend, lib)
+  hooks/              Reusable React hooks
+  lib/                Utilities, remote API client, Supabase clients
+  remote/             HTTP client wrappers (feature hooks depend on this)
+```
+Refer to `AGENTS.md` for the complete directory contract and coding standards.
 
 ## Getting Started
+1. Install dependencies:
+   ```bash
+   npm install
+   ```
+2. Duplicate the environment template and supply real credentials:
+   ```bash
+   cp .env.local.example .env.local
+   ```
+3. Provide the following keys (sync Preview and Production on Vercel):
+   - `NEXT_PUBLIC_SUPABASE_URL`  Supabase project URL (public)
+   - `NEXT_PUBLIC_SUPABASE_ANON_KEY`  Supabase anon key for browser clients
+   - `SUPABASE_URL`  Supabase project URL (identical to public URL)
+   - `SUPABASE_SERVICE_ROLE_KEY`  Service-role key for backend usage (keep secret)
+4. Start the development server:
+   ```bash
+   npm run dev
+   ```
 
-개발 서버를 실행합니다.<br/>
-환경에 따른 명령어를 사용해주세요.
+## Available Scripts
+| Command            | Description                                    |
+| ------------------ | ---------------------------------------------- |
+| `npm run dev`      | Start Next.js dev server with Turbopack         |
+| `npm run build`    | Production build (used by Vercel)               |
+| `npm run start`    | Launch the production server                    |
+| `npm run lint`     | Run ESLint with project rules                   |
+| `npm run test:e2e` | Execute Playwright end-to-end suite             |
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Supabase Migrations
+- Place SQL files in `supabase/migrations` using `0001_description.sql` naming.
+- Keep migrations idempotent (`CREATE TABLE IF NOT EXISTS`, `BEGIN ... EXCEPTION`).
+- Include an `updated_at` column with a trigger and disable RLS.
+- Apply migrations via the Supabase CLI or dashboard; this repository only stores SQL.
 
-브라우저에서 [http://localhost:3000](http://localhost:3000)을 열어 결과를 확인할 수 있습니다.
+## Deployment (Vercel)
+1. Log in and link the project:
+   ```bash
+   vercel login
+   vercel link
+   ```
+2. Upload environment variables for each target:
+   ```bash
+   vercel env add NEXT_PUBLIC_SUPABASE_URL production
+   vercel env add NEXT_PUBLIC_SUPABASE_ANON_KEY production
+   vercel env add SUPABASE_URL production
+   vercel env add SUPABASE_SERVICE_ROLE_KEY production
+   # repeat for preview (and development if needed)
+   ```
+3. Trigger a preview build:
+   ```bash
+   vercel
+   ```
+4. Promote to production:
+   ```bash
+   vercel --prod
+   ```
+5. Subsequent git pushes create new previews; merges into the production branch update the live site.
 
-`app/page.tsx` 파일을 수정하여 페이지를 편집할 수 있습니다. 파일을 수정하면 자동으로 페이지가 업데이트됩니다.
+## Coding Guidelines
+- Every React component must declare `"use client"`.
+- Page components should receive route params via async functions that resolve the params promise.
+- Feature hooks must perform network calls through `@/lib/remote/api-client`.
+- Prefer functional, immutable patterns and early returns.
+- Validate external data with Zod before consumption.
 
-## 기본 포함 라이브러리
+## Contributing
+1. Fork the repository and create a feature branch.
+2. Adhere to linting and formatting (`npm run lint`).
+3. Update or add tests when introducing behavior changes.
+4. Open a pull request describing the change set and verification.
 
-- [Next.js](https://nextjs.org)
-- [React](https://react.dev)
-- [Tailwind CSS](https://tailwindcss.com)
-- [TypeScript](https://www.typescriptlang.org)
-- [ESLint](https://eslint.org)
-- [Prettier](https://prettier.io)
-- [Shadcn UI](https://ui.shadcn.com)
-- [Lucide Icon](https://lucide.dev)
-- [date-fns](https://date-fns.org)
-- [react-use](https://github.com/streamich/react-use)
-- [es-toolkit](https://github.com/toss/es-toolkit)
-- [Zod](https://zod.dev)
-- [React Query](https://tanstack.com/query/latest)
-- [React Hook Form](https://react-hook-form.com)
-- [TS Pattern](https://github.com/gvergnaud/ts-pattern)
-
-## 사용 가능한 명령어
-
-한글버전 사용
-
-```sh
-easynext lang ko
-```
-
-최신버전으로 업데이트
-
-```sh
-npm i -g @easynext/cli@latest
-# or
-yarn add -g @easynext/cli@latest
-# or
-pnpm add -g @easynext/cli@latest
-```
-
-Supabase 설정
-
-```sh
-easynext supabase
-```
-
-Next-Auth 설정
-
-```sh
-easynext auth
-
-# ID,PW 로그인
-easynext auth idpw
-# 카카오 로그인
-easynext auth kakao
-```
-
-유용한 서비스 연동
-
-```sh
-# Google Analytics
-easynext gtag
-
-# Microsoft Clarity
-easynext clarity
-
-# ChannelIO
-easynext channelio
-
-# Sentry
-easynext sentry
-
-# Google Adsense
-easynext adsense
-```
+---
+This template is actively evolving; track updates or open issues in the project board.
