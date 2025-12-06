@@ -69,7 +69,7 @@ const InfluencerApplicationsPage = ({ params }: InfluencerApplicationsPageProps)
     return (
       <main className="min-h-screen bg-slate-50 px-6 py-12">
         <div className="mx-auto max-w-3xl rounded-3xl border border-slate-200 bg-white p-12 text-center">
-          <p className="text-lg font-medium text-slate-800">로그인이 필요한 서비스입니다.</p>
+          <p className="text-lg font-medium text-slate-800">Please sign in to use this page.</p>
         </div>
       </main>
     );
@@ -79,7 +79,7 @@ const InfluencerApplicationsPage = ({ params }: InfluencerApplicationsPageProps)
     return (
       <main className="min-h-screen bg-slate-50 px-6 py-12">
         <div className="mx-auto max-w-3xl rounded-3xl border border-slate-200 bg-white p-12 text-center">
-          <p className="text-lg font-medium text-slate-800">인플루언서 전용 페이지입니다.</p>
+          <p className="text-lg font-medium text-slate-800">This page is for influencers only.</p>
         </div>
       </main>
     );
@@ -90,8 +90,8 @@ const InfluencerApplicationsPage = ({ params }: InfluencerApplicationsPageProps)
       <div className="mx-auto flex max-w-5xl flex-col gap-8">
         <section className="space-y-3">
           <div className="space-y-1">
-            <h1 className="text-3xl font-semibold text-slate-900">내 지원 목록</h1>
-            <p className="text-sm text-slate-600">현재 선택된 상태: {selectedLabel}</p>
+            <h1 className="text-3xl font-semibold text-slate-900">My applications</h1>
+            <p className="text-sm text-slate-600">Current status: {selectedLabel}</p>
           </div>
           <MyApplicationsFilter value={statusFilter} onChange={setStatusFilter} />
         </section>
@@ -99,14 +99,14 @@ const InfluencerApplicationsPage = ({ params }: InfluencerApplicationsPageProps)
         <section className="space-y-4">
           {applicationsQuery.isError ? (
             <div className="rounded-2xl border border-rose-200 bg-rose-50 p-6 text-sm text-rose-600">
-              <p className="font-medium">지원 목록을 불러오지 못했습니다.</p>
-              <p>{applicationsQuery.error?.message ?? '다시 시도해 주세요.'}</p>
+              <p className="font-medium">Failed to load your applications.</p>
+              <p>{applicationsQuery.error?.message ?? 'Please try again.'}</p>
               <button
                 type="button"
                 onClick={() => applicationsQuery.refetch()}
                 className="mt-3 inline-flex items-center rounded-full border border-rose-200 px-4 py-2 text-xs font-medium text-rose-600 transition hover:border-rose-400"
               >
-                다시 시도
+                Retry
               </button>
             </div>
           ) : null}

@@ -16,11 +16,11 @@ export default function Home() {
       <section className="bg-slate-900 py-16 text-white">
         <div className="mx-auto flex max-w-6xl flex-col gap-6 px-6">
           <h1 className="text-3xl font-semibold md:text-4xl">
-            원하는 체험단을 지금 바로 만나보세요
+            Discover the right campaigns right now
           </h1>
           <p className="max-w-2xl text-sm text-slate-200 md:text-base">
-            신뢰할 수 있는 체험단을 한 곳에서 탐색하고 신청 흐름까지 이어집니다.
-            체험단을 등록하면 즉시 공개 일정과 함께 노출됩니다.
+            Explore trusted campaigns in one place and apply without friction.
+            Publish your own campaign to share dates and details instantly.
           </p>
           <div className="mt-4 flex flex-wrap items-center gap-3 md:mt-6">
             {isAuthenticated ? (
@@ -30,7 +30,7 @@ export default function Home() {
                 className="gap-2 bg-white text-slate-900 hover:bg-white/90"
               >
                 <Link href="/dashboard">
-                  내 대시보드로 이동
+                  Go to my dashboard
                   <ArrowRight className="h-4 w-4" />
                 </Link>
               </Button>
@@ -42,7 +42,7 @@ export default function Home() {
                   className="gap-2 bg-white text-slate-900 hover:bg-white/90"
                 >
                   <Link href="/signup">
-                    무료로 시작하기
+                    Get started for free
                     <ArrowRight className="h-4 w-4" />
                   </Link>
                 </Button>
@@ -52,7 +52,7 @@ export default function Home() {
                   variant="outline"
                   className="border-slate-200 bg-transparent text-white hover:bg-white hover:text-slate-900"
                 >
-                  <Link href="/login">로그인</Link>
+                  <Link href="/login">Sign in</Link>
                 </Button>
               </>
             )}

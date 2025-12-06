@@ -69,7 +69,7 @@ export const handleSignup = async (
     return failure(
       500,
       onboardingErrorCodes.supabaseFailure,
-      '회원가입 처리 중 오류가 발생했습니다.',
+      'An error occurred while completing sign-up.',
     );
   }
 
@@ -90,7 +90,7 @@ export const handleSignup = async (
     return failure(
       500,
       onboardingErrorCodes.profileInsertFailed,
-      '회원 프로필 저장에 실패했습니다.',
+      'Failed to save the user profile.',
       profileInsert.error.message,
     );
   }

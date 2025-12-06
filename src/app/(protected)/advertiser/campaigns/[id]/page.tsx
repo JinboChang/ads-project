@@ -45,7 +45,7 @@ const getRoleType = (
 };
 
 const statusFilterLabels: Record<AdvertiserApplicantStatusFilter, string> = {
-  all: "전체",
+  all: "All",
   submitted: applicationStatusLabelMap.submitted,
   approved: applicationStatusLabelMap.approved,
   rejected: applicationStatusLabelMap.rejected,
@@ -158,7 +158,7 @@ const AdvertiserCampaignDetailPage = ({ params }: AdvertiserCampaignDetailPagePr
     }
 
     const confirmed = window.confirm(
-      "모집을 종료하시겠습니까? 종료하면 새로운 지원을 받을 수 없습니다.",
+      "Close recruiting? New applications will no longer be accepted.",
     );
 
     if (!confirmed) {
@@ -168,13 +168,13 @@ const AdvertiserCampaignDetailPage = ({ params }: AdvertiserCampaignDetailPagePr
     try {
       await closeMutation.mutateAsync({});
       toast({
-        title: "모집을 종료했어요.",
-        description: "지원자 목록에서 선정 작업을 진행해 주세요.",
+        title: "Recruiting closed.",
+        description: "Proceed to approve applicants from the list.",
       });
     } catch (error) {
       toast({
-        title: "모집 종료에 실패했습니다.",
-        description: error instanceof Error ? error.message : "다시 시도해 주세요.",
+        title: "Failed to close recruiting.",
+        description: error instanceof Error ? error.message : "Please try again.",
         variant: "destructive",
       });
     }
@@ -186,7 +186,7 @@ const AdvertiserCampaignDetailPage = ({ params }: AdvertiserCampaignDetailPagePr
     }
 
     const confirmed = window.confirm(
-      "모집을 다시 시작할까요? 재시작하면 인플루언서가 다시 지원할 수 있습니다.",
+      "Reopen recruiting? Influencers will be able to apply again.",
     );
 
     if (!confirmed) {
@@ -195,11 +195,11 @@ const AdvertiserCampaignDetailPage = ({ params }: AdvertiserCampaignDetailPagePr
 
     try {
       await reopenMutation.mutateAsync({});
-      toast({ title: "모집을 다시 시작했어요." });
+      toast({ title: "Recruiting reopened." });
     } catch (error) {
       toast({
-        title: "모집 재시작에 실패했습니다.",
-        description: error instanceof Error ? error.message : "다시 시도해 주세요.",
+        title: "Failed to reopen recruiting.",
+        description: error instanceof Error ? error.message : "Please try again.",
         variant: "destructive",
       });
     }
@@ -216,13 +216,13 @@ const AdvertiserCampaignDetailPage = ({ params }: AdvertiserCampaignDetailPagePr
           applicantIds: selectedApplicantIds,
           note: options.note,
         });
-        toast({ title: "선정 처리를 완료했습니다." });
+        toast({ title: "Selection completed." });
         resetSelection();
         setIsManageDialogOpen(false);
       } catch (error) {
         toast({
-          title: "선정 처리에 실패했습니다.",
-          description: error instanceof Error ? error.message : "다시 시도해 주세요.",
+          title: "Failed to approve applicants.",
+          description: error instanceof Error ? error.message : "Please try again.",
           variant: "destructive",
         });
       }
@@ -236,7 +236,7 @@ const AdvertiserCampaignDetailPage = ({ params }: AdvertiserCampaignDetailPagePr
     return (
       <main className="min-h-screen bg-slate-50 px-6 py-12">
         <div className="mx-auto max-w-4xl rounded-3xl border border-slate-200 bg-white p-12 text-center">
-          <p className="text-lg font-medium text-slate-800">유효하지 않은 체험단 ID입니다.</p>
+          <p className="text-lg font-medium text-slate-800">Invalid campaign ID.</p>
         </div>
       </main>
     );
@@ -258,8 +258,8 @@ const AdvertiserCampaignDetailPage = ({ params }: AdvertiserCampaignDetailPagePr
     return (
       <main className="min-h-screen bg-slate-50 px-6 py-12">
         <div className="mx-auto max-w-4xl rounded-3xl border border-rose-200 bg-rose-50 p-12 text-center text-sm text-rose-600">
-          <p className="text-lg font-semibold">체험단 정보를 불러오지 못했습니다.</p>
-          <p className="mt-2">{detailQuery.error?.message ?? "다시 시도해 주세요."}</p>
+          <p className="text-lg font-semibold">Failed to load campaign information.</p>
+          <p className="mt-2">{detailQuery.error?.message ?? "Please try again."}</p>
         </div>
       </main>
     );
@@ -269,7 +269,7 @@ const AdvertiserCampaignDetailPage = ({ params }: AdvertiserCampaignDetailPagePr
     return (
       <main className="min-h-screen bg-slate-50 px-6 py-12">
         <div className="mx-auto max-w-4xl rounded-3xl border border-slate-200 bg-white p-12 text-center">
-          <p className="text-lg font-medium text-slate-800">체험단 정보를 찾을 수 없습니다.</p>
+          <p className="text-lg font-medium text-slate-800">Campaign not found.</p>
         </div>
       </main>
     );
@@ -299,7 +299,7 @@ const AdvertiserCampaignDetailPage = ({ params }: AdvertiserCampaignDetailPagePr
               }}
               counts={counts}
             />
-            <div className="text-sm text-slate-500">현재 필터: {statusFilterLabels[statusFilter]}</div>
+            <div className="text-sm text-slate-500">Current filter: {statusFilterLabels[statusFilter]}</div>
           </div>
           <ApplicantTable
             applicants={filteredApplicants}
@@ -315,7 +315,7 @@ const AdvertiserCampaignDetailPage = ({ params }: AdvertiserCampaignDetailPagePr
               className="inline-flex items-center rounded-full border border-slate-200 px-4 py-2 text-sm text-slate-700 transition hover:border-slate-400"
               onClick={() => detailQuery.refetch()}
             >
-              새로고침
+              Refresh
             </button>
             <button
               type="button"
@@ -323,7 +323,7 @@ const AdvertiserCampaignDetailPage = ({ params }: AdvertiserCampaignDetailPagePr
               onClick={() => setIsManageDialogOpen(true)}
               disabled={!isSelectionEnabled || selectedApplicantIds.length === 0 || approveMutation.isPending}
             >
-              선정 완료
+              Approve selected
             </button>
           </div>
         </section>

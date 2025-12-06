@@ -31,29 +31,29 @@ export type UploadFrequency = (typeof uploadFrequencyValues)[number];
 
 const httpsUrlSchema = z
   .string()
-  .url({ message: '올바른 URL을 입력해주세요.' })
+  .url({ message: 'Please enter a valid URL.' })
   .refine((value) => value.startsWith('https://'), {
-    message: '채널 URL은 https://로 시작해야 합니다.',
+    message: 'Channel URL must start with https://.',
   });
 
 export const InfluencerChannelInputSchema = z.object({
   platform: z.enum(channelPlatformValues, {
-    required_error: '채널 플랫폼을 선택해주세요.',
+    required_error: 'Please select a channel platform.',
   }),
   channelName: z
     .string()
-    .min(1, '채널 이름을 입력해주세요.')
-    .max(200, '채널 이름은 200자를 초과할 수 없습니다.'),
+    .min(1, 'Please enter a channel name.')
+    .max(200, 'Channel name cannot exceed 200 characters.'),
   channelUrl: httpsUrlSchema,
   audienceSize: z
-    .number({ invalid_type_error: '구독자 수는 숫자로 입력해주세요.' })
-    .int('구독자 수는 정수로 입력해주세요.')
-    .positive('구독자 수는 1 이상의 값이어야 합니다.')
-    .max(1_000_000_000, '구독자 수는 10억 이하로 입력해주세요.')
+    .number({ invalid_type_error: 'Subscribers must be a number.' })
+    .int('Subscribers must be an integer.')
+    .positive('Subscribers must be at least 1.')
+    .max(1_000_000_000, 'Subscribers must be 1 billion or less.')
     .optional()
     .or(z.literal('').transform(() => undefined)),
   uploadFrequency: z.enum(uploadFrequencyValues, {
-    required_error: '주요 업로드 빈도를 선택해주세요.',
+    required_error: 'Please select an upload frequency.',
   }),
 });
 
@@ -61,11 +61,11 @@ export type InfluencerChannelInput = z.infer<typeof InfluencerChannelInputSchema
 
 export const InfluencerProfileInputSchema = z.object({
   birthDate: z
-    .string({ required_error: '생년월일을 입력해주세요.' })
-    .min(1, '생년월일을 입력해주세요.'),
+    .string({ required_error: 'Please enter your date of birth.' })
+    .min(1, 'Please enter your date of birth.'),
   channels: z
     .array(InfluencerChannelInputSchema)
-    .min(1, '최소 1개 이상의 채널을 등록해주세요.'),
+    .min(1, 'Register at least one channel.'),
 });
 
 export type InfluencerProfileInput = z.infer<typeof InfluencerProfileInputSchema>;

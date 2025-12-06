@@ -42,7 +42,7 @@ const parsePayload = async (
         error: failure(
           400,
           advertiserErrorCodes.invalidPayload,
-          '愿묎퀬二??꾨줈???붿껌 媛믪씠 ?좏슚?섏? ?딆뒿?덈떎.',
+          'The advertiser profile payload is invalid.',
           parsed.error.format(),
         ),
       };
@@ -55,7 +55,7 @@ const parsePayload = async (
       error: failure(
         400,
         advertiserErrorCodes.invalidPayload,
-        '愿묎퀬二??꾨줈???붿껌 蹂몃Ц???щ컮瑜댁? ?딆뒿?덈떎.',
+        'Could not parse the advertiser profile request body.',
       ),
     };
   }
@@ -73,7 +73,7 @@ const resolveAdvertiserUser = async (
     return failure(
       401,
       advertiserErrorCodes.unauthorized,
-      '?몄쬆 ?좏겙???꾩슂?⑸땲??',
+      'Authorization token is required.',
     );
   }
 
@@ -83,7 +83,7 @@ const resolveAdvertiserUser = async (
     return failure(
       401,
       advertiserErrorCodes.unauthorized,
-      '?몄쬆 ?뺣낫媛 ?좏슚?섏? ?딆뒿?덈떎.',
+      'The authentication information is invalid.',
       userResult.error?.message,
     );
   }
@@ -101,7 +101,7 @@ const resolveAdvertiserUser = async (
     return failure(
       500,
       advertiserErrorCodes.supabaseFailure,
-      '?ъ슜???뺣낫瑜??뺤씤?섏? 紐삵뻽?듬땲??',
+      'Failed to verify the user profile.',
       profileResult.error.message,
     );
   }
@@ -110,7 +110,7 @@ const resolveAdvertiserUser = async (
     return failure(
       403,
       advertiserErrorCodes.forbidden,
-      '愿묎퀬二??꾩슜 湲곕뒫?낅땲??',
+      'This feature is available to advertisers only.',
     );
   }
 

@@ -11,14 +11,14 @@ export type MyApplicationStatusFilter =
   (typeof myApplicationStatusFilterValues)[number];
 
 export const applicationStatusLabelMap: Record<ApplicationStatus, string> = {
-  submitted: '신청 완료',
-  approved: '선정',
-  rejected: '반려',
-  cancelled: '취소',
+  submitted: 'Submitted',
+  approved: 'Approved',
+  rejected: 'Rejected',
+  cancelled: 'Cancelled',
 } as const;
 
 export const myApplicationStatusLabelMap: Record<MyApplicationStatusFilter, string> = {
-  all: '전체',
+  all: 'All',
   submitted: applicationStatusLabelMap.submitted,
   approved: applicationStatusLabelMap.approved,
   rejected: applicationStatusLabelMap.rejected,

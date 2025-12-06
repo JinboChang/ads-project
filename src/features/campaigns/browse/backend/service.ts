@@ -67,7 +67,7 @@ export const listCampaigns = async (
     return failure(
       500,
       campaignBrowseErrorCodes.supabaseFailure,
-      '체험단 목록을 불러오지 못했습니다.',
+      'Failed to load campaign list.',
       result.error.message,
     );
   }

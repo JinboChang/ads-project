@@ -31,10 +31,10 @@ type CampaignSummaryCardProps = {
 };
 
 const statusCountLabelMap = {
-  submitted: "지원",
-  approved: "선정",
-  rejected: "미선정",
-  cancelled: "취소",
+  submitted: "Applied",
+  approved: "Approved",
+  rejected: "Not selected",
+  cancelled: "Cancelled",
 } as const;
 
 export const CampaignSummaryCard = ({ campaign }: CampaignSummaryCardProps) => {
@@ -67,7 +67,7 @@ export const CampaignSummaryCard = ({ campaign }: CampaignSummaryCardProps) => {
           <div className="flex flex-wrap items-center gap-3">
             <span className={statusBadgeClassName}>{campaignStatusLabelMap[campaign.status]}</span>
             <span className="text-xs text-slate-500">
-              모집 기간 {formatDate(campaign.applicationStartAt)} ~ {formatDate(campaign.applicationEndAt)}
+              Application period {formatDate(campaign.applicationStartAt)} ~ {formatDate(campaign.applicationEndAt)}
             </span>
           </div>
           <h2 className="text-2xl font-semibold text-slate-900">{campaign.title}</h2>
@@ -78,9 +78,9 @@ export const CampaignSummaryCard = ({ campaign }: CampaignSummaryCardProps) => {
         <div className="grid gap-3 md:grid-cols-2">
           <div className="rounded-2xl bg-slate-50 p-4 text-sm text-slate-700">
             <div className="flex justify-between">
-              <span className="text-xs text-slate-500">총 지원자</span>
+              <span className="text-xs text-slate-500">Total applicants</span>
               <span className="text-base font-semibold text-slate-900">
-                {campaign.stats.totalApplicants.toLocaleString()}명
+                {campaign.stats.totalApplicants.toLocaleString()}
               </span>
             </div>
             <ul className="mt-3 flex flex-wrap gap-3 text-xs text-slate-600">
@@ -90,7 +90,7 @@ export const CampaignSummaryCard = ({ campaign }: CampaignSummaryCardProps) => {
                   className="flex items-center gap-1 rounded-full bg-white px-3 py-1 shadow-sm"
                 >
                   <span className="font-medium text-slate-700">{statusCountLabelMap[item.key]}</span>
-                  <span>{item.value.toLocaleString()}명</span>
+                  <span>{item.value.toLocaleString()}</span>
                 </li>
               ))}
             </ul>
@@ -98,17 +98,17 @@ export const CampaignSummaryCard = ({ campaign }: CampaignSummaryCardProps) => {
           <div className="rounded-2xl bg-slate-50 p-4 text-sm text-slate-700">
             <dl className="space-y-2">
               <div className="flex justify-between">
-                <dt className="text-xs text-slate-500">모집 인원</dt>
+                <dt className="text-xs text-slate-500">Capacity</dt>
                 <dd className="font-medium text-slate-900">
-                  {campaign.maxParticipants.toLocaleString()}명
+                  {campaign.maxParticipants.toLocaleString()}
                 </dd>
               </div>
               <div className="flex justify-between">
-                <dt className="text-xs text-slate-500">최근 지원일</dt>
+                <dt className="text-xs text-slate-500">Last application</dt>
                 <dd className="font-medium text-slate-900">
                   {campaign.stats.lastApplicationAt
                     ? formatDate(campaign.stats.lastApplicationAt)
-                    : "기록 없음"}
+                    : "No record"}
                 </dd>
               </div>
             </dl>
@@ -119,7 +119,7 @@ export const CampaignSummaryCard = ({ campaign }: CampaignSummaryCardProps) => {
             href={detailHref}
             className="inline-flex items-center rounded-full border border-slate-200 px-4 py-2 text-sm text-slate-700 transition hover:border-slate-400"
           >
-            상세 보기
+            View details
           </Link>
         </div>
       </div>

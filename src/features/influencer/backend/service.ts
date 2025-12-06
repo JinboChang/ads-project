@@ -65,7 +65,7 @@ const ensureAgeRequirement = (birthDate: string): FailureResult | null => {
     return failure(
       400,
       influencerErrorCodes.underAge,
-      '만 14세 이상만 채널 정보를 등록할 수 있습니다.',
+      'Only users 14 or older can register channel information.',
     );
   }
 
@@ -84,7 +84,7 @@ const ensureChannelUniqueness = (
       return failure(
         400,
         influencerErrorCodes.channelDuplicate,
-        '동일한 채널이 중복되어 있습니다. 채널 정보를 확인해주세요.',
+        'Duplicate channel detected. Please review your channel entries.',
       );
     }
 
@@ -150,7 +150,7 @@ const upsertProfileRow = async (
     return failure(
       500,
       influencerErrorCodes.supabaseFailure,
-      '인플루언서 프로필 정보를 확인하지 못했습니다.',
+      'Failed to load influencer profile information.',
       existing.error.message,
     );
   }
@@ -165,7 +165,7 @@ const upsertProfileRow = async (
       return failure(
         500,
         influencerErrorCodes.supabaseFailure,
-        '인플루언서 프로필 정보를 갱신하지 못했습니다.',
+        'Failed to update influencer profile information.',
         updateResult.error.message,
       );
     }
@@ -183,7 +183,7 @@ const upsertProfileRow = async (
     return failure(
       500,
       influencerErrorCodes.supabaseFailure,
-      '인플루언서 프로필을 생성하지 못했습니다.',
+      'Failed to create influencer profile.',
       insertResult.error.message,
     );
   }
@@ -219,7 +219,7 @@ const upsertChannels = async (
     return failure(
       500,
       influencerErrorCodes.supabaseFailure,
-      '채널 정보를 확인하지 못했습니다.',
+      'Failed to load channel information.',
       existingChannels.error.message,
     );
   }
@@ -247,7 +247,7 @@ const upsertChannels = async (
     return failure(
       500,
       influencerErrorCodes.supabaseFailure,
-      '채널 정보를 저장하지 못했습니다.',
+      'Failed to save channel information.',
       upsertResult.error.message,
     );
   }
@@ -293,7 +293,7 @@ export const getInfluencerProfile = async (
     return failure(
       500,
       influencerErrorCodes.profileFetchFailed,
-      '기본 프로필 정보를 조회하지 못했습니다.',
+      'Failed to fetch base profile information.',
       baseProfileResult.error.message,
     );
   }
@@ -302,7 +302,7 @@ export const getInfluencerProfile = async (
     return failure(
       500,
       influencerErrorCodes.profileFetchFailed,
-      '인플루언서 프로필 정보를 조회하지 못했습니다.',
+      'Failed to fetch influencer profile information.',
       profileResult.error.message,
     );
   }
@@ -311,7 +311,7 @@ export const getInfluencerProfile = async (
     return failure(
       500,
       influencerErrorCodes.profileFetchFailed,
-      '인플루언서 채널 정보를 조회하지 못했습니다.',
+      'Failed to fetch influencer channel information.',
       channelsResult.error.message,
     );
   }

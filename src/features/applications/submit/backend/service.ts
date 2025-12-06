@@ -98,7 +98,7 @@ export const submitCampaignApplication = async (
       return failure(
         404,
         campaignApplicationErrorCodes.campaignNotFound,
-        '요청한 체험단을 찾을 수 없습니다.',
+        'The requested campaign was not found.',
       );
     }
 
@@ -106,7 +106,7 @@ export const submitCampaignApplication = async (
     return failure(
       500,
       campaignApplicationErrorCodes.supabaseFailure,
-      '체험단 정보를 확인하지 못했습니다.',
+      'Failed to retrieve campaign information.',
       campaignResult.error.message,
     );
   }
@@ -117,7 +117,7 @@ export const submitCampaignApplication = async (
     return failure(
       404,
       campaignApplicationErrorCodes.campaignNotFound,
-      '요청한 체험단을 찾을 수 없습니다.',
+      'The requested campaign was not found.',
     );
   }
 
@@ -128,7 +128,7 @@ export const submitCampaignApplication = async (
     return failure(
       500,
       campaignApplicationErrorCodes.supabaseFailure,
-      '사용자 정보를 확인하지 못했습니다.',
+      'Failed to verify user information.',
       profileRoleResult.error.message,
     );
   }
@@ -137,7 +137,7 @@ export const submitCampaignApplication = async (
     return failure(
       403,
       campaignApplicationErrorCodes.forbidden,
-      '인플루언서만 지원할 수 있습니다.',
+      'Only influencers can apply.',
     );
   }
 
@@ -148,7 +148,7 @@ export const submitCampaignApplication = async (
     return failure(
       500,
       campaignApplicationErrorCodes.supabaseFailure,
-      '인플루언서 프로필을 확인하지 못했습니다.',
+      'Failed to load the influencer profile.',
       influencerProfileResult.error.message,
     );
   }
@@ -157,7 +157,7 @@ export const submitCampaignApplication = async (
     return failure(
       400,
       campaignApplicationErrorCodes.profileIncomplete,
-      '인플루언서 프로필을 먼저 등록해주세요.',
+      'Please create your influencer profile first.',
     );
   }
 
@@ -165,7 +165,7 @@ export const submitCampaignApplication = async (
     return failure(
       400,
       campaignApplicationErrorCodes.profileNotVerified,
-      '인플루언서 프로필 검증이 완료되어야 지원할 수 있습니다.',
+      'Your influencer profile must be verified before you can apply.',
     );
   }
 
@@ -173,7 +173,7 @@ export const submitCampaignApplication = async (
     return failure(
       400,
       campaignApplicationErrorCodes.campaignClosed,
-      '모집이 종료된 체험단입니다.',
+      'This campaign is closed.',
     );
   }
 
@@ -181,7 +181,7 @@ export const submitCampaignApplication = async (
     return failure(
       400,
       campaignApplicationErrorCodes.outsidePeriod,
-      '모집 기간이 아닙니다.',
+      'Applications are not open right now.',
     );
   }
 
@@ -192,7 +192,7 @@ export const submitCampaignApplication = async (
     return failure(
       500,
       campaignApplicationErrorCodes.supabaseFailure,
-      '체험단 지원 정보를 확인하지 못했습니다.',
+      'Failed to check application information.',
       duplicateCheck.error.message,
     );
   }
@@ -201,7 +201,7 @@ export const submitCampaignApplication = async (
     return failure(
       409,
       campaignApplicationErrorCodes.duplicateApplication,
-      '이미 지원한 체험단입니다.',
+      'You have already applied to this campaign.',
     );
   }
 
@@ -215,7 +215,7 @@ export const submitCampaignApplication = async (
     return failure(
       500,
       campaignApplicationErrorCodes.supabaseFailure,
-      '체험단 지원 현황을 확인하지 못했습니다.',
+      'Failed to check application status.',
       approvedCountResult.error.message,
     );
   }
@@ -227,7 +227,7 @@ export const submitCampaignApplication = async (
     return failure(
       400,
       campaignApplicationErrorCodes.quotaFull,
-      '모집 정원이 모두 채워졌습니다.',
+      'All available slots have been filled.',
     );
   }
 
@@ -237,7 +237,7 @@ export const submitCampaignApplication = async (
     return failure(
       400,
       campaignApplicationErrorCodes.invalidPayload,
-      '올바른 방문 예정일을 입력해주세요.',
+      'Enter a valid planned visit date.',
     );
   }
 
@@ -258,7 +258,7 @@ export const submitCampaignApplication = async (
     return failure(
       500,
       campaignApplicationErrorCodes.supabaseFailure,
-      '체험단 지원을 저장하지 못했습니다.',
+      'Failed to save the application.',
       insertResult.error?.message,
     );
   }

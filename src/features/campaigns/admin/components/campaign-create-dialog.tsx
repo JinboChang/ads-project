@@ -30,16 +30,16 @@ import {
 import { useCreateCampaignMutation } from '@/features/campaigns/admin/hooks/useCreateCampaignMutation';
 
 const formSchema = z.object({
-  title: z.string().min(1, '체험단 이름을 입력해주세요.'),
-  benefitSummary: z.string().min(1, '혜택 요약을 입력해주세요.'),
-  missionDetails: z.string().min(1, '미션 내용을 입력해주세요.'),
+  title: z.string().min(1, 'Please enter a campaign name.'),
+  benefitSummary: z.string().min(1, 'Please enter a benefit summary.'),
+  missionDetails: z.string().min(1, 'Please enter mission details.'),
   storeLocation: z.string().optional(),
-  applicationStartAt: z.string().min(1, '모집 시작일을 선택해주세요.'),
-  applicationEndAt: z.string().min(1, '모집 종료일을 선택해주세요.'),
+  applicationStartAt: z.string().min(1, 'Please select a start date.'),
+  applicationEndAt: z.string().min(1, 'Please select an end date.'),
   maxParticipants: z
     .string()
-    .min(1, '모집 인원을 입력해주세요.')
-    .regex(/^[0-9]+$/, '숫자만 입력할 수 있습니다.'),
+    .min(1, 'Please enter the number of participants.')
+    .regex(/^[0-9]+$/, 'Only numbers are allowed.'),
 });
 
 type CampaignCreateFormValues = z.infer<typeof formSchema>;
@@ -98,8 +98,8 @@ export const CampaignCreateDialog = ({
 
     if (!parsed.success) {
       toast({
-        title: '입력값을 확인해주세요.',
-        description: '모집 정보가 올바른지 다시 한번 확인해주세요.',
+        title: 'Please check your inputs.',
+        description: 'Review the campaign details and try again.',
         variant: 'destructive',
       });
       return;
@@ -108,16 +108,16 @@ export const CampaignCreateDialog = ({
     try {
       await createMutation.mutateAsync(parsed.data);
       toast({
-        title: '체험단을 등록했어요.',
-        description: '등록한 체험단은 목록에서 바로 확인할 수 있어요.',
+        title: 'Campaign created.',
+        description: 'You can now see the campaign in your list.',
       });
       form.reset();
       onOpenChange(false);
       onCreated?.(parsed.data);
     } catch (error) {
-      const message = error instanceof Error ? error.message : '체험단을 등록하지 못했습니다.';
+      const message = error instanceof Error ? error.message : 'Could not create the campaign.';
       toast({
-        title: '체험단 등록에 실패했습니다.',
+        title: 'Failed to create campaign.',
         description: message,
         variant: 'destructive',
       });
@@ -125,7 +125,7 @@ export const CampaignCreateDialog = ({
   });
 
   const submitButtonLabel = useMemo(
-    () => (isSubmitting ? '등록 중...' : '체험단 등록'),
+    () => (isSubmitting ? 'Creating...' : 'Create campaign'),
     [isSubmitting],
   );
 
@@ -133,9 +133,9 @@ export const CampaignCreateDialog = ({
     <Sheet open={open} onOpenChange={onOpenChange}>
       <SheetContent side="right" className="w-full max-w-xl overflow-y-auto border-slate-200 bg-slate-50 p-6">
         <SheetHeader className="space-y-2 text-left">
-          <SheetTitle className="text-xl font-semibold text-slate-900">신규 체험단 등록</SheetTitle>
+          <SheetTitle className="text-xl font-semibold text-slate-900">Create a new campaign</SheetTitle>
           <SheetDescription className="text-sm text-slate-600">
-            모집 정보를 입력하면 즉시 목록에 반영됩니다.
+            Enter recruiting details to publish to the list immediately.
           </SheetDescription>
         </SheetHeader>
         <Form {...form}>
@@ -145,10 +145,10 @@ export const CampaignCreateDialog = ({
               name="title"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>체험단 이름</FormLabel>
+                  <FormLabel>Campaign name</FormLabel>
                   <FormControl>
                     <Input
-                      placeholder="예: 가을 신메뉴 오프라인 체험단"
+                      placeholder="e.g., Fall menu offline trial"
                       disabled={isSubmitting}
                       {...field}
                     />
@@ -162,10 +162,10 @@ export const CampaignCreateDialog = ({
               name="benefitSummary"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>혜택 요약</FormLabel>
+                  <FormLabel>Benefit summary</FormLabel>
                   <FormControl>
                     <Input
-                      placeholder="예: 3만원 상당 메뉴 제공"
+                      placeholder="e.g., 30,000 KRW menu provided"
                       disabled={isSubmitting}
                       {...field}
                     />
@@ -179,11 +179,11 @@ export const CampaignCreateDialog = ({
               name="missionDetails"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>미션 상세 내용</FormLabel>
+                  <FormLabel>Mission details</FormLabel>
                   <FormControl>
                     <Textarea
                       rows={5}
-                      placeholder="방문 인증 + 인스타그램 후기 1회 업로드"
+                      placeholder="Visit proof + one Instagram post"
                       disabled={isSubmitting}
                       {...field}
                     />
@@ -197,10 +197,10 @@ export const CampaignCreateDialog = ({
               name="storeLocation"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>매장 위치 (선택)</FormLabel>
+                  <FormLabel>Store location (optional)</FormLabel>
                   <FormControl>
                     <Input
-                      placeholder="예: 서울시 강남구 테헤란로 123"
+                      placeholder="e.g., 123 Teheran-ro, Gangnam-gu, Seoul"
                       disabled={isSubmitting}
                       {...field}
                     />
@@ -212,27 +212,27 @@ export const CampaignCreateDialog = ({
             <div className="grid gap-5 md:grid-cols-2">
               <FormField
                 control={form.control}
-                name="applicationStartAt"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>모집 시작일</FormLabel>
-                    <FormControl>
-                      <Input type="date" disabled={isSubmitting} {...field} />
-                    </FormControl>
-                    <FormMessage />
+              name="applicationStartAt"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Start date</FormLabel>
+                  <FormControl>
+                    <Input type="date" disabled={isSubmitting} {...field} />
+                  </FormControl>
+                  <FormMessage />
                   </FormItem>
                 )}
               />
               <FormField
                 control={form.control}
-                name="applicationEndAt"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>모집 종료일</FormLabel>
-                    <FormControl>
-                      <Input type="date" disabled={isSubmitting} {...field} />
-                    </FormControl>
-                    <FormMessage />
+              name="applicationEndAt"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>End date</FormLabel>
+                  <FormControl>
+                    <Input type="date" disabled={isSubmitting} {...field} />
+                  </FormControl>
+                  <FormMessage />
                   </FormItem>
                 )}
               />
@@ -242,7 +242,7 @@ export const CampaignCreateDialog = ({
               name="maxParticipants"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>모집 인원</FormLabel>
+                  <FormLabel>Participant slots</FormLabel>
                   <FormControl>
                     <Input type="number" min={1} disabled={isSubmitting} {...field} />
                   </FormControl>
@@ -257,7 +257,7 @@ export const CampaignCreateDialog = ({
                 onClick={() => onOpenChange(false)}
                 disabled={isSubmitting}
               >
-                취소
+                Cancel
               </Button>
               <Button type="submit" disabled={isSubmitting} className="bg-slate-900 text-white hover:bg-slate-700">
                 {submitButtonLabel}

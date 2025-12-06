@@ -24,7 +24,7 @@ const approveApplicantsRequest = async (
   const token = session.data.session?.access_token;
 
   if (!token) {
-    throw new Error("로그인이 필요한 서비스입니다.");
+    throw new Error("Please sign in to manage applicants.");
   }
 
   try {
@@ -40,7 +40,7 @@ const approveApplicantsRequest = async (
 
     return CampaignWorkflowResultSchema.parse(response.data);
   } catch (error) {
-    const message = extractApiErrorMessage(error, "선정 처리에 실패했습니다.");
+    const message = extractApiErrorMessage(error, "Failed to approve applicants.");
     throw new Error(message);
   }
 };

@@ -9,7 +9,7 @@ import {
 import { applicationStatusValues } from "@/features/campaigns/lib/dto";
 
 const statusLabels: Record<AdvertiserApplicantStatusFilter, string> = {
-  all: "전체",
+  all: "All",
   submitted: applicationStatusLabelMap.submitted,
   approved: applicationStatusLabelMap.approved,
   rejected: applicationStatusLabelMap.rejected,

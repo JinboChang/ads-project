@@ -1,4 +1,5 @@
-﻿"use client";
+﻿
+"use client";
 
 import { useCallback, useMemo, useState } from "react";
 import Image from "next/image";
@@ -18,13 +19,13 @@ import {
 const signupFormSchema = SignupRequestSchema.extend({
   confirmPassword: z
     .string()
-    .min(8, "비밀번호는 8자 이상이어야 합니다."),
+    .min(8, "Password must be at least 8 characters."),
 }).superRefine((data, ctx) => {
   if (data.password !== data.confirmPassword) {
     ctx.addIssue({
       code: z.ZodIssueCode.custom,
       path: ["confirmPassword"],
-      message: "비밀번호 확인이 일치하지 않습니다.",
+      message: "Passwords do not match.",
     });
   }
 });
@@ -44,13 +45,13 @@ const defaultValues: SignupFormValues = {
 const REDIRECT_DELAY_MS = 1500;
 
 const roleLabels: Record<RoleType, string> = {
-  influencer: "인플루언서",
-  advertiser: "광고주",
+  influencer: "Influencer",
+  advertiser: "Advertiser",
 };
 
 const verificationLabels: Record<VerificationMethod, string> = {
-  email: "이메일 인증",
-  sms: "SMS 인증",
+  email: "Email verification",
+  sms: "SMS verification",
 };
 
 export const SignupForm = () => {
@@ -91,7 +92,7 @@ export const SignupForm = () => {
         const nextPath = redirectTarget ?? result.nextPath;
 
         setFeedbackMessage(
-          "가입이 완료되었습니다. 이메일을 확인하고 인증을 진행해주세요.",
+          "Sign-up complete. Please check your email to verify your account.",
         );
 
         await new Promise((resolve) => {
@@ -110,10 +111,8 @@ export const SignupForm = () => {
   return (
     <div className="mx-auto flex min-h-screen w-full max-w-4xl flex-col items-center justify-center gap-10 px-6 py-16">
       <header className="flex flex-col items-center gap-3 text-center">
-        <h1 className="text-3xl font-semibold">회원가입</h1>
-        <p className="text-slate-500">
-          기본 정보를 입력하고 역할을 선택한 뒤 체험단 온보딩을 시작하세요.
-        </p>
+        <h1 className="text-3xl font-semibold">Sign up</h1>
+        <p className="text-slate-500">Enter your details and choose a role to start onboarding.</p>
       </header>
       <div className="grid w-full gap-8 md:grid-cols-2">
         <form
@@ -121,7 +120,7 @@ export const SignupForm = () => {
           className="flex flex-col gap-4 rounded-xl border border-slate-200 p-6 shadow-sm"
         >
           <label className="flex flex-col gap-2 text-sm text-slate-700">
-            이름
+            Full name
             <input
               type="text"
               autoComplete="name"
@@ -136,7 +135,7 @@ export const SignupForm = () => {
             ) : null}
           </label>
           <label className="flex flex-col gap-2 text-sm text-slate-700">
-            휴대폰 번호
+            Phone number
             <input
               type="tel"
               autoComplete="tel"
@@ -151,7 +150,7 @@ export const SignupForm = () => {
             ) : null}
           </label>
           <label className="flex flex-col gap-2 text-sm text-slate-700">
-            이메일
+            Email
             <input
               type="email"
               autoComplete="email"
@@ -167,7 +166,7 @@ export const SignupForm = () => {
           </label>
           <div className="grid gap-4 md:grid-cols-2">
             <label className="flex flex-col gap-2 text-sm text-slate-700">
-              비밀번호
+              Password
               <input
                 type="password"
                 autoComplete="new-password"
@@ -182,7 +181,7 @@ export const SignupForm = () => {
               ) : null}
             </label>
             <label className="flex flex-col gap-2 text-sm text-slate-700">
-              비밀번호 확인
+              Confirm password
               <input
                 type="password"
                 autoComplete="new-password"
@@ -199,7 +198,7 @@ export const SignupForm = () => {
           </div>
           <fieldset className="flex flex-col gap-3 rounded-md border border-slate-200 p-3">
             <legend className="px-1 text-sm font-medium text-slate-700">
-              역할 선택
+              Choose a role
             </legend>
             {roleTypeValues.map((value) => (
               <label key={value} className="flex items-center gap-2 text-sm">
@@ -221,7 +220,7 @@ export const SignupForm = () => {
           </fieldset>
           <fieldset className="flex flex-col gap-3 rounded-md border border-slate-200 p-3">
             <legend className="px-1 text-sm font-medium text-slate-700">
-              인증 방식
+              Verification method
             </legend>
             {verificationMethodValues.map((value) => (
               <label key={value} className="flex items-center gap-2 text-sm">
@@ -252,13 +251,13 @@ export const SignupForm = () => {
             disabled={isPending}
             className="rounded-md bg-slate-900 px-4 py-2 text-sm font-medium text-white transition hover:bg-slate-700 disabled:cursor-not-allowed disabled:bg-slate-400"
           >
-            {isPending ? "가입 처리 중..." : "가입하기"}
+            {isPending ? "Signing you up..." : "Sign up"}
           </button>
         </form>
         <figure className="hidden overflow-hidden rounded-xl border border-slate-200 md:block">
           <Image
             src="https://picsum.photos/seed/onboarding-signup/640/640"
-            alt="회원가입 안내 이미지"
+            alt="Sign-up illustration"
             width={640}
             height={640}
             className="h-full w-full object-cover"

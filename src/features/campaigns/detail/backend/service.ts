@@ -191,7 +191,7 @@ export const getCampaignDetail = async (
       return failure(
         404,
         campaignDetailErrorCodes.notFound,
-        '요청한 체험단을 찾을 수 없습니다.',
+        'The requested campaign was not found.',
       );
     }
 
@@ -199,7 +199,7 @@ export const getCampaignDetail = async (
     return failure(
       500,
       campaignDetailErrorCodes.supabaseFailure,
-      '체험단 정보를 불러오지 못했습니다.',
+      'Failed to load campaign information.',
       campaignResult.error.message,
     );
   }
@@ -208,7 +208,7 @@ export const getCampaignDetail = async (
     return failure(
       404,
       campaignDetailErrorCodes.notFound,
-      '요청한 체험단을 찾을 수 없습니다.',
+      'The requested campaign was not found.',
     );
   }
 
@@ -221,7 +221,7 @@ export const getCampaignDetail = async (
     return failure(
       500,
       campaignDetailErrorCodes.supabaseFailure,
-      '체험단 지원 정보를 불러오지 못했습니다.',
+      'Failed to load application information.',
       applicationsResult.error.message,
     );
   }
@@ -244,7 +244,7 @@ export const getCampaignDetail = async (
       return failure(
         500,
         campaignDetailErrorCodes.supabaseFailure,
-        '사용자 정보를 확인하지 못했습니다.',
+        'Failed to verify user information.',
         profileRoleResult.error.message,
       );
     }
@@ -258,7 +258,7 @@ export const getCampaignDetail = async (
       return failure(
         500,
         campaignDetailErrorCodes.eligibilityComputationFailed,
-        '지원 가능 여부를 확인하지 못했습니다.',
+        'Failed to evaluate eligibility.',
         influencerProfileResult.error.message,
       );
     }

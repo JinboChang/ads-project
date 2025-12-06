@@ -28,7 +28,7 @@ export const registerCampaignDetailRoutes = (app: Hono<AppEnv>) => {
         failure(
           400,
           campaignDetailErrorCodes.invalidParams,
-          '체험단 상세 요청 값이 유효하지 않습니다.',
+          'The campaign detail request parameters are invalid.',
           params.error.format(),
         ),
       );

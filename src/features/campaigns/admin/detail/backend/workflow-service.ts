@@ -56,7 +56,7 @@ const ensureProfileAndCampaign = async (
     return failure<AdvertiserCampaignDetailErrorCode>(
       500,
       advertiserCampaignDetailErrorCodes.supabaseFailure,
-      '광고주 정보를 확인하지 못했습니다.',
+      'Failed to load advertiser information.',
       profileResult.error.message,
     );
   }
@@ -65,7 +65,7 @@ const ensureProfileAndCampaign = async (
     return failure<AdvertiserCampaignDetailErrorCode>(
       403,
       advertiserCampaignDetailErrorCodes.forbidden,
-      '광고주 전용 기능입니다.',
+      'This feature is for advertisers only.',
     );
   }
 
@@ -73,7 +73,7 @@ const ensureProfileAndCampaign = async (
     return failure<AdvertiserCampaignDetailErrorCode>(
       403,
       advertiserCampaignDetailErrorCodes.profileUnverified,
-      '광고주 프로필 검증이 완료된 이후에 이용 가능합니다.',
+      'Available after your advertiser profile is verified.',
     );
   }
 
@@ -84,7 +84,7 @@ const ensureProfileAndCampaign = async (
     return failure<AdvertiserCampaignDetailErrorCode>(
       500,
       advertiserCampaignDetailErrorCodes.supabaseFailure,
-      '체험단 정보를 확인하지 못했습니다.',
+      'Failed to load campaign information.',
       campaignResult.error.message,
     );
   }
@@ -93,7 +93,7 @@ const ensureProfileAndCampaign = async (
     return failure<AdvertiserCampaignDetailErrorCode>(
       404,
       advertiserCampaignDetailErrorCodes.campaignNotFound,
-      '요청한 체험단을 찾을 수 없습니다.',
+      'The requested campaign was not found.',
     );
   }
 
@@ -101,7 +101,7 @@ const ensureProfileAndCampaign = async (
     return failure<AdvertiserCampaignDetailErrorCode>(
       403,
       advertiserCampaignDetailErrorCodes.forbidden,
-      '해당 체험단을 관리할 권한이 없습니다.',
+      'You do not have permission to manage this campaign.',
     );
   }
 
@@ -138,7 +138,7 @@ export const closeCampaign = async (
     return failure<AdvertiserCampaignDetailErrorCode>(
       400,
       advertiserCampaignDetailErrorCodes.invalidParams,
-      '모집 종료 요청 값이 유효하지 않습니다.',
+      'The close request payload is invalid.',
       parsed.error.format(),
     );
   }
@@ -160,7 +160,7 @@ export const closeCampaign = async (
     return failure<AdvertiserCampaignDetailErrorCode>(
       400,
       advertiserCampaignDetailErrorCodes.invalidState,
-      '모집중 상태에서만 모집 종료를 수행할 수 있습니다.',
+      'You can only close campaigns that are recruiting.',
     );
   }
 
@@ -179,7 +179,7 @@ export const closeCampaign = async (
     return failure<AdvertiserCampaignDetailErrorCode>(
       500,
       advertiserCampaignDetailErrorCodes.supabaseFailure,
-      '모집 종료 처리에 실패했습니다.',
+      'Failed to close recruiting.',
       updateResult.error?.message,
     );
   }
@@ -201,7 +201,7 @@ export const approveApplicants = async (
     return failure<AdvertiserCampaignDetailErrorCode>(
       400,
       advertiserCampaignDetailErrorCodes.invalidParams,
-      '선정 요청 값이 유효하지 않습니다.',
+      'The approval request payload is invalid.',
       parsed.error.format(),
     );
   }
@@ -223,7 +223,7 @@ export const approveApplicants = async (
     return failure<AdvertiserCampaignDetailErrorCode>(
       400,
       advertiserCampaignDetailErrorCodes.invalidState,
-      '모집 종료 상태에서만 지원자를 선정할 수 있습니다.',
+      'Applicants can be approved only after recruitment is closed.',
     );
   }
 
@@ -238,7 +238,7 @@ export const approveApplicants = async (
     return failure<AdvertiserCampaignDetailErrorCode>(
       500,
       advertiserCampaignDetailErrorCodes.supabaseFailure,
-      '지원자 정보를 불러오지 못했습니다.',
+      'Failed to load applicant information.',
       applicationResult.error.message,
     );
   }
@@ -256,7 +256,7 @@ export const approveApplicants = async (
       return failure<AdvertiserCampaignDetailErrorCode>(
         400,
         advertiserCampaignDetailErrorCodes.unknownApplicants,
-        '선정 대상에 알 수 없는 지원자가 포함되어 있습니다.',
+        'Selected applicants include unknown entries.',
       );
     }
     selectedRows.push(row);
@@ -271,7 +271,7 @@ export const approveApplicants = async (
     return failure<AdvertiserCampaignDetailErrorCode>(
       400,
       advertiserCampaignDetailErrorCodes.approvalQuotaExceeded,
-      '선정 인원이 모집 정원을 초과했습니다.',
+      'Approved count exceeds the participant limit.',
     );
   }
 
@@ -289,7 +289,7 @@ export const approveApplicants = async (
       return failure<AdvertiserCampaignDetailErrorCode>(
         500,
         advertiserCampaignDetailErrorCodes.supabaseFailure,
-        '선정 처리에 실패했습니다.',
+        'Failed to approve applicants.',
         updateApproved.error.message,
       );
     }
@@ -332,7 +332,7 @@ export const approveApplicants = async (
       return failure<AdvertiserCampaignDetailErrorCode>(
         500,
         advertiserCampaignDetailErrorCodes.supabaseFailure,
-        '선정되지 않은 지원자 처리에 실패했습니다.',
+        'Failed to update unselected applicants.',
         rejectResult.error.message,
       );
     }
@@ -365,7 +365,7 @@ export const approveApplicants = async (
     return failure<AdvertiserCampaignDetailErrorCode>(
       500,
       advertiserCampaignDetailErrorCodes.supabaseFailure,
-      '선정 결과를 가져오지 못했습니다.',
+      'Failed to retrieve selection results.',
       refreshedCampaign.error?.message,
     );
   }
@@ -387,7 +387,7 @@ export const reopenCampaign = async (
     return failure<AdvertiserCampaignDetailErrorCode>(
       400,
       advertiserCampaignDetailErrorCodes.invalidParams,
-      '재모집 요청 값이 유효하지 않습니다.',
+      'The reopen request payload is invalid.',
       parsed.error.format(),
     );
   }
@@ -409,7 +409,7 @@ export const reopenCampaign = async (
     return failure<AdvertiserCampaignDetailErrorCode>(
       400,
       advertiserCampaignDetailErrorCodes.invalidState,
-      '모집 종료 상태에서만 재모집을 시작할 수 있습니다.',
+      'You can only reopen campaigns that are closed.',
     );
   }
 
@@ -438,7 +438,7 @@ export const reopenCampaign = async (
     return failure<AdvertiserCampaignDetailErrorCode>(
       500,
       advertiserCampaignDetailErrorCodes.supabaseFailure,
-      '재모집 처리에 실패했습니다.',
+      'Failed to reopen recruiting.',
       updateResult.error?.message,
     );
   }

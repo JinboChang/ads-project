@@ -36,7 +36,7 @@ const fetchAdvertiserCampaigns = async (
   const token = session.data.session?.access_token;
 
   if (!token) {
-    throw new Error('로그인이 필요한 서비스입니다.');
+    throw new Error('Please sign in to view your campaigns.');
   }
 
   const query = buildQueryString(params);
@@ -60,7 +60,7 @@ const fetchAdvertiserCampaigns = async (
       const message =
         typeof payload?.error?.message === 'string'
           ? payload.error.message
-          : '체험단 목록을 불러오지 못했습니다.';
+          : 'Failed to load campaign list.';
       const enrichedError = new Error(message) as Error & {
         code?: string;
         status?: number;
@@ -74,7 +74,7 @@ const fetchAdvertiserCampaigns = async (
       throw enrichedError;
     }
 
-    const fallbackError = new Error('체험단 목록을 불러오지 못했습니다.');
+    const fallbackError = new Error('Failed to load campaign list.');
     throw fallbackError;
   }
 };

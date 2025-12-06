@@ -33,7 +33,7 @@ export const registerCampaignApplicationRoutes = (app: Hono<AppEnv>) => {
         failure(
           400,
           campaignApplicationErrorCodes.invalidPayload,
-          '체험단 지원 요청 값이 유효하지 않습니다.',
+          'The campaign application payload is invalid.',
           payloadParseResult.error.format(),
         ),
       );
@@ -47,7 +47,7 @@ export const registerCampaignApplicationRoutes = (app: Hono<AppEnv>) => {
         failure(
           401,
           campaignApplicationErrorCodes.unauthorized,
-          '지원하려면 로그인이 필요합니다.',
+          'You must be signed in to apply.',
         ),
       );
     }
@@ -60,7 +60,7 @@ export const registerCampaignApplicationRoutes = (app: Hono<AppEnv>) => {
         failure(
           401,
           campaignApplicationErrorCodes.unauthorized,
-          '유효하지 않은 인증 토큰입니다.',
+          'The authentication token is invalid.',
           userResult.error?.message,
         ),
       );

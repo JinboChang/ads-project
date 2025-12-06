@@ -31,19 +31,19 @@ const statusBadge = (status: string | null | undefined) => {
     case 'approved':
       return (
         <span className="rounded-full bg-emerald-100 px-2 py-1 text-xs text-emerald-700">
-          승인됨
+          Approved
         </span>
       );
     case 'rejected':
       return (
         <span className="rounded-full bg-rose-100 px-2 py-1 text-xs text-rose-700">
-          반려됨
+          Rejected
         </span>
       );
     default:
       return (
         <span className="rounded-full bg-amber-100 px-2 py-1 text-xs text-amber-700">
-          정보 입력 필요
+          Details required
         </span>
       );
   }
@@ -97,8 +97,8 @@ export const AdvertiserProfileForm = () => {
       });
 
       toast({
-        title: '저장되었습니다.',
-        description: '광고주 정보가 업데이트되었고 체험단 모집 기능을 바로 사용할 수 있어요.',
+        title: 'Saved.',
+        description: 'Advertiser information has been updated. You can start recruiting right away.',
       });
     },
     [mutateAsync, toast],
@@ -107,7 +107,7 @@ export const AdvertiserProfileForm = () => {
   if (isLoading) {
     return (
       <div className="flex min-h-[50vh] items-center justify-center">
-        <p className="text-sm text-slate-500">광고주 정보를 불러오는 중입니다...</p>
+        <p className="text-sm text-slate-500">Loading advertiser information...</p>
       </div>
     );
   }
@@ -118,7 +118,7 @@ export const AdvertiserProfileForm = () => {
         <p className="text-sm text-rose-500">
           {error instanceof Error
             ? error.message
-            : '광고주 정보를 불러오지 못했습니다.'}
+            : 'Failed to load advertiser information.'}
         </p>
       </div>
     );
@@ -130,10 +130,8 @@ export const AdvertiserProfileForm = () => {
   return (
     <div className="mx-auto flex w-full max-w-4xl flex-col gap-10 px-6 py-12">
       <header className="flex flex-col gap-2">
-        <h1 className="text-2xl font-semibold">광고주 정보 등록</h1>
-        <p className="text-sm text-slate-500">
-          사업자 정보를 등록하고 검증을 완료하면 체험단 모집 기능을 사용할 수 있어요.
-        </p>
+        <h1 className="text-2xl font-semibold">Advertiser information</h1>
+        <p className="text-sm text-slate-500">Add your business details and verification to start running campaigns.</p>
       </header>
       <div className="grid gap-8 md:grid-cols-[3fr_2fr]">
         <form
@@ -142,11 +140,11 @@ export const AdvertiserProfileForm = () => {
         >
           <section className="flex flex-col gap-3 rounded-md border border-slate-100 bg-slate-50 p-4">
             <div className="flex items-center justify-between">
-              <h2 className="text-sm font-semibold text-slate-700">검증 상태</h2>
+              <h2 className="text-sm font-semibold text-slate-700">Verification status</h2>
               {statusBadge(currentStatus)}
             </div>
             <p className="text-xs text-slate-600">
-              정보를 저장하면 바로 체험단 모집을 시작할 수 있고, 운영팀이 사후 검토를 진행할 수 있습니다.
+              Once you save your info, you can immediately start recruiting and our team may review it afterward.
             </p>
             {verificationNotes ? (
               <p className="rounded-md bg-amber-50 px-3 py-2 text-xs text-amber-700">
@@ -156,7 +154,7 @@ export const AdvertiserProfileForm = () => {
           </section>
 
           <label className="flex flex-col gap-2 text-sm text-slate-700">
-            업체명
+            Company name
             <input
               type="text"
               {...form.register('companyName')}
@@ -171,7 +169,7 @@ export const AdvertiserProfileForm = () => {
           </label>
 
           <label className="flex flex-col gap-2 text-sm text-slate-700">
-            위치
+            Location
             <input
               type="text"
               {...form.register('location')}
@@ -186,7 +184,7 @@ export const AdvertiserProfileForm = () => {
           </label>
 
           <label className="flex flex-col gap-2 text-sm text-slate-700">
-            카테고리
+            Category
             <input
               type="text"
               {...form.register('businessCategory')}
@@ -201,7 +199,7 @@ export const AdvertiserProfileForm = () => {
           </label>
 
           <label className="flex flex-col gap-2 text-sm text-slate-700">
-            사업자등록번호
+            Business registration number
             <input
               type="text"
               inputMode="numeric"
@@ -211,7 +209,7 @@ export const AdvertiserProfileForm = () => {
               disabled={isPending}
             />
             <span className="text-xs text-slate-500">
-              하이픈 없이 10자리 숫자로 입력해주세요.
+              Enter 10 digits with no hyphens.
             </span>
             {form.formState.errors.businessRegistrationNumber ? (
               <span className="text-xs text-rose-500">
@@ -226,20 +224,19 @@ export const AdvertiserProfileForm = () => {
               disabled={isPending}
               className="rounded-md bg-slate-900 px-4 py-2 text-sm font-medium text-white transition hover:bg-slate-700 disabled:cursor-not-allowed disabled:bg-slate-400"
             >
-              {isPending ? '저장 중...' : '저장하기'}
+              {isPending ? 'Saving...' : 'Save'}
             </button>
           </div>
         </form>
         <aside className="flex flex-col gap-4 rounded-xl border border-slate-200 bg-slate-50 p-6">
-          <h2 className="text-sm font-semibold text-slate-700">안내</h2>
+          <h2 className="text-sm font-semibold text-slate-700">Notes</h2>
           <p className="text-sm text-slate-600">
-            입력하신 사업자 정보는 저장 직후 체험단 운영 권한에 반영되며, 필요 시 운영팀이 사후 검토를 진행합니다.
-            정보 변경 시 다시 검토 단계로 전환될 수 있습니다.
+            The business details you provide will unlock campaign management immediately. Our team may review the information afterward, and edits can trigger another review.
           </p>
           <figure className="overflow-hidden rounded-lg border border-slate-200">
             <Image
               src="https://picsum.photos/seed/advertiser-profile/640/640"
-              alt="광고주 프로필 안내 이미지"
+              alt="Advertiser profile helper image"
               width={640}
               height={640}
               className="h-full w-full object-cover"

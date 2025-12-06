@@ -15,7 +15,7 @@ const getAuthHeaders = async () => {
   const token = sessionResult.data.session?.access_token;
 
   if (!token) {
-    throw new Error('로그인이 필요한 서비스입니다.');
+    throw new Error('Please sign in to update your profile.');
   }
 
   return {
@@ -38,7 +38,7 @@ const upsertInfluencerProfile = async (payload: InfluencerProfilePayload) => {
   } catch (error) {
     const message = extractApiErrorMessage(
       error,
-      '인플루언서 정보를 저장하지 못했습니다.',
+      'Failed to save influencer information.',
     );
     throw new Error(message);
   }

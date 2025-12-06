@@ -13,10 +13,10 @@ const statusBadgeClass: Record<string, string> = {
 };
 
 const statusLabel: Record<string, string> = {
-  recruiting: '모집중',
-  recruitment_closed: '모집 종료',
-  completed: '완료',
-  draft: '초안',
+  recruiting: 'Recruiting',
+  recruitment_closed: 'Recruitment Closed',
+  completed: 'Completed',
+  draft: 'Draft',
 };
 
 type CampaignCardProps = {
@@ -57,26 +57,26 @@ export const CampaignCard = ({ campaign }: CampaignCardProps) => {
         </p>
         <div className="mt-auto space-y-2 text-sm text-slate-500">
           {campaign.storeLocation ? (
-            <p>위치: {campaign.storeLocation}</p>
+            <p>Location: {campaign.storeLocation}</p>
           ) : null}
           {endDate ? (
             <p>
-              모집 마감: {format(endDate, 'yyyy.MM.dd')}{' '}
+              Applications close: {format(endDate, 'yyyy.MM.dd')}{' '}
               {daysLeft !== null && daysLeft >= 0 ? (
                 <span className="text-xs text-rose-600">(D-{daysLeft})</span>
               ) : (
-                <span className="text-xs text-slate-400">(마감)</span>
+                <span className="text-xs text-slate-400">(Closed)</span>
               )}
             </p>
           ) : (
-            <p>모집 마감: 상시 모집</p>
+            <p>Applications close: Ongoing</p>
           )}
         </div>
         <Link
           href={`/campaigns/${campaign.id}`}
           className="mt-3 inline-flex items-center justify-center rounded-md border border-slate-200 px-3 py-2 text-sm font-medium text-slate-700 transition hover:border-slate-400 hover:bg-slate-50"
         >
-          자세히 보기
+          View details
         </Link>
       </div>
     </div>

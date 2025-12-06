@@ -81,7 +81,7 @@ const CampaignDetailPage = ({ params }: CampaignDetailPageProps) => {
   if (isLoading && !data) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-slate-50">
-        <p className="text-sm text-slate-500">체험단 정보를 불러오는 중입니다...</p>
+        <p className="text-sm text-slate-500">Loading campaign details...</p>
       </div>
     );
   }
@@ -90,7 +90,7 @@ const CampaignDetailPage = ({ params }: CampaignDetailPageProps) => {
     return (
       <div className="flex min-h-screen items-center justify-center bg-slate-50">
         <div className="rounded-xl border border-rose-200 bg-rose-50 px-6 py-4 text-sm text-rose-600">
-          {error instanceof Error ? error.message : '체험단 정보를 불러오지 못했습니다.'}
+          {error instanceof Error ? error.message : 'Failed to load campaign details.'}
         </div>
       </div>
     );
@@ -108,7 +108,7 @@ const CampaignDetailPage = ({ params }: CampaignDetailPageProps) => {
         >
           <SheetHeader className="mb-4 text-left">
             <SheetTitle className="text-xl font-semibold text-slate-900">
-              체험단 지원하기
+              Apply to this campaign
             </SheetTitle>
             <p className="text-sm text-slate-600">{data.campaign.title}</p>
           </SheetHeader>

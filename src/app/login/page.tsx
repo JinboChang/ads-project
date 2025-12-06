@@ -49,7 +49,7 @@ export default function LoginPage({ params }: LoginPageProps) {
         });
 
         const nextAction = result.error
-          ? result.error.message ?? "로그인에 실패했습니다."
+          ? result.error.message ?? "Failed to sign in."
           : ("success" as const);
 
         if (nextAction === "success") {
@@ -60,7 +60,7 @@ export default function LoginPage({ params }: LoginPageProps) {
           setErrorMessage(nextAction);
         }
       } catch (error) {
-        setErrorMessage("로그인 처리 중 오류가 발생했습니다.");
+        setErrorMessage("An error occurred while signing in.");
       } finally {
         setIsSubmitting(false);
       }
@@ -75,10 +75,8 @@ export default function LoginPage({ params }: LoginPageProps) {
   return (
     <div className="mx-auto flex min-h-screen w-full max-w-4xl flex-col items-center justify-center gap-10 px-6 py-16">
       <header className="flex flex-col items-center gap-3 text-center">
-        <h1 className="text-3xl font-semibold">로그인</h1>
-        <p className="text-slate-500">
-          Supabase 계정으로 로그인하고 보호된 페이지에 접근하세요.
-        </p>
+        <h1 className="text-3xl font-semibold">Sign in</h1>
+        <p className="text-slate-500">Sign in with your Supabase account to access protected pages.</p>
       </header>
       <div className="grid w-full gap-8 md:grid-cols-2">
         <form
@@ -86,7 +84,7 @@ export default function LoginPage({ params }: LoginPageProps) {
           className="flex flex-col gap-4 rounded-xl border border-slate-200 p-6 shadow-sm"
         >
           <label className="flex flex-col gap-2 text-sm text-slate-700">
-            이메일
+            Email
             <input
               type="email"
               name="email"
@@ -98,7 +96,7 @@ export default function LoginPage({ params }: LoginPageProps) {
             />
           </label>
           <label className="flex flex-col gap-2 text-sm text-slate-700">
-            비밀번호
+            Password
             <input
               type="password"
               name="password"
@@ -117,22 +115,22 @@ export default function LoginPage({ params }: LoginPageProps) {
             disabled={isSubmitting}
             className="rounded-md bg-slate-900 px-4 py-2 text-sm font-medium text-white transition hover:bg-slate-700 disabled:cursor-not-allowed disabled:bg-slate-400"
           >
-            {isSubmitting ? "로그인 중" : "로그인"}
+            {isSubmitting ? "Signing in" : "Sign in"}
           </button>
           <p className="text-xs text-slate-500">
-            계정이 없으신가요?{" "}
+            Don't have an account?{" "}
             <Link
               href="/signup"
               className="font-medium text-slate-700 underline hover:text-slate-900"
             >
-              회원가입
+              Sign up
             </Link>
           </p>
         </form>
         <figure className="overflow-hidden rounded-xl border border-slate-200">
           <Image
             src="https://picsum.photos/seed/login/640/640"
-            alt="로그인"
+            alt="Sign in"
             width={640}
             height={640}
             className="h-full w-full object-cover"

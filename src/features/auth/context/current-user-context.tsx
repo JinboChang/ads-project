@@ -106,7 +106,7 @@ export const useCurrentUserContext = () => {
   const value = useContext(CurrentUserContext);
 
   if (!value) {
-    throw new Error("CurrentUserProvider가 필요합니다.");
+    throw new Error("CurrentUserProvider is required.");
   }
 
   return value;

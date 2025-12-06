@@ -23,10 +23,10 @@ export const applicationStatusValues = [
 export type ApplicationStatus = (typeof applicationStatusValues)[number];
 
 export const applicationStatusLabelMap: Record<ApplicationStatus, string> = {
-  submitted: '신청완료',
-  approved: '선정',
-  rejected: '반려',
-  cancelled: '취소',
+  submitted: 'Submitted',
+  approved: 'Approved',
+  rejected: 'Rejected',
+  cancelled: 'Cancelled',
 } as const;
 
 export const CampaignSummarySchema = z.object({
@@ -114,10 +114,10 @@ export const CampaignDetailResponseSchema = z.object({
 export type CampaignDetailResponse = z.infer<typeof CampaignDetailResponseSchema>;
 
 export const campaignStatusLabelMap: Record<CampaignStatus, string> = {
-  draft: '초안',
-  recruiting: '모집중',
-  recruitment_closed: '모집 종료',
-  completed: '완료',
+  draft: 'Draft',
+  recruiting: 'Recruiting',
+  recruitment_closed: 'Recruitment Closed',
+  completed: 'Completed',
 } as const;
 
 export const AdvertiserCampaignStatsSchema = z.object({
@@ -180,9 +180,9 @@ export const AdvertiserCampaignCreateInputSchema = z
       }
 
       return start.getTime() < end.getTime();
-    },
+  },
   {
-    message: '모집 종료일은 시작일 이후여야 합니다.',
+    message: 'Application end date must be after the start date.',
     path: ['applicationEndAt'],
   },
 );
@@ -206,11 +206,11 @@ export const CampaignDateRangeSchema = z
       }
 
       return start.getTime() < end.getTime();
-    },
-    {
-      message: '모집 종료일은 시작일 이후여야 합니다.',
-      path: ['applicationEndAt'],
-    },
+  },
+  {
+    message: 'Application end date must be after the start date.',
+    path: ['applicationEndAt'],
+  },
   );
 
 export type CampaignDateRange = z.infer<typeof CampaignDateRangeSchema>;
@@ -254,7 +254,7 @@ export const ReopenCampaignRequestSchema = z
       return false;
     },
     {
-      message: '모집 시작일과 종료일을 모두 입력해야 합니다.',
+      message: 'Both application start and end dates are required.',
       path: ['applicationStartAt'],
     },
   );

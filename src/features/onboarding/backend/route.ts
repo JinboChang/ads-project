@@ -32,7 +32,7 @@ const parseSignupPayload = async (
       error: failure(
         400,
         onboardingErrorCodes.invalidPayload,
-        '회원가입 요청 본문이 올바르지 않습니다.',
+        'The sign-up request body is invalid.',
       ),
     };
   }
@@ -45,7 +45,7 @@ const parseSignupPayload = async (
       error: failure(
         400,
         onboardingErrorCodes.invalidPayload,
-        '회원가입 요청 값이 유효하지 않습니다.',
+        'The sign-up payload is invalid.',
         parsed.error.format(),
       ),
     };

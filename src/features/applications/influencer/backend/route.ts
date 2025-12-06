@@ -31,7 +31,7 @@ export const registerInfluencerApplicationRoutes = (app: Hono<AppEnv>) => {
         failure(
           401,
           influencerApplicationsErrorCodes.unauthorized,
-          '로그인이 필요한 서비스입니다.',
+          'Please sign in to use this service.',
         ),
       );
     }
@@ -46,7 +46,7 @@ export const registerInfluencerApplicationRoutes = (app: Hono<AppEnv>) => {
         failure(
           400,
           influencerApplicationsErrorCodes.invalidParams,
-          '지원 목록 조회 파라미터가 올바르지 않습니다.',
+          'The application list query parameters are invalid.',
           queryParams.error.format(),
         ),
       );
@@ -61,7 +61,7 @@ export const registerInfluencerApplicationRoutes = (app: Hono<AppEnv>) => {
         failure(
           500,
           influencerApplicationsErrorCodes.supabaseFailure,
-          '사용자 정보를 확인하지 못했습니다.',
+          'Failed to verify user information.',
           userResult.error.message,
         ),
       );
@@ -75,7 +75,7 @@ export const registerInfluencerApplicationRoutes = (app: Hono<AppEnv>) => {
         failure(
           401,
           influencerApplicationsErrorCodes.unauthorized,
-          '로그인이 필요한 서비스입니다.',
+          'Please sign in to use this service.',
         ),
       );
     }

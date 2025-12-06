@@ -11,7 +11,7 @@ import {
 import { CampaignSummaryCard } from '@/features/campaigns/admin/components/campaign-summary-card';
 
 const filterOptions: Array<{ value: CampaignStatus | 'all'; label: string }> = [
-  { value: 'all', label: '전체' },
+  { value: 'all', label: 'All' },
   ...campaignStatusValues.map((status) => ({
     value: status,
     label: campaignStatusLabelMap[status],
@@ -49,15 +49,15 @@ export const CampaignAdminDashboard = ({
     <div className="flex flex-col gap-8">
       <section className="flex flex-wrap items-center justify-between gap-3">
         <div className="space-y-1">
-          <h1 className="text-3xl font-semibold text-slate-900">체험단 관리</h1>
-          <p className="text-sm text-slate-600">등록한 체험단을 확인하고 새로운 모집을 만들어보세요.</p>
+          <h1 className="text-3xl font-semibold text-slate-900">Campaign management</h1>
+          <p className="text-sm text-slate-600">Review your campaigns and create new ones.</p>
         </div>
         <Button
           onClick={onOpenCreateDialog}
           className="rounded-full bg-slate-900 px-5 py-2 text-sm font-medium text-white hover:bg-slate-700"
           disabled={isCreateDisabled}
         >
-          신규 체험단 등록
+          Create campaign
         </Button>
       </section>
 
@@ -80,7 +80,7 @@ export const CampaignAdminDashboard = ({
 
       {errorMessage ? (
         <div className="rounded-2xl border border-rose-200 bg-rose-50 p-6 text-sm text-rose-600">
-          <p className="font-medium">체험단 목록을 불러올 수 없었습니다.</p>
+          <p className="font-medium">Could not load campaigns.</p>
           <p>{errorMessage}</p>
         </div>
       ) : null}
@@ -95,15 +95,15 @@ export const CampaignAdminDashboard = ({
 
       {!isLoading && !errorMessage && filteredCampaigns.length === 0 ? (
         <div className="flex min-h-[30vh] flex-col items-center justify-center gap-2 rounded-3xl border border-dashed border-slate-200 bg-white p-12 text-center">
-          <p className="text-base font-medium text-slate-700">등록된 체험단이 없습니다.</p>
-          <p className="text-sm text-slate-500">신규 체험단을 등록해 모집을 시작해 보세요.</p>
+          <p className="text-base font-medium text-slate-700">No campaigns yet.</p>
+          <p className="text-sm text-slate-500">Create a campaign to start recruiting.</p>
           <Button
             type="button"
             onClick={onOpenCreateDialog}
             className="mt-4 rounded-full bg-slate-900 px-5 py-2 text-sm font-medium text-white hover:bg-slate-700"
             disabled={isCreateDisabled}
           >
-            체험단 등록하기
+            Create campaign
           </Button>
         </div>
       ) : null}

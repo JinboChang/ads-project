@@ -50,7 +50,7 @@ const AdvertiserProfilePage = ({ params }: AdvertiserProfilePageProps) => {
   if (isLoading) {
     return (
       <div className="flex min-h-[50vh] items-center justify-center">
-        <p className="text-sm text-slate-500">정보를 확인하는 중입니다...</p>
+        <p className="text-sm text-slate-500">Checking your information...</p>
       </div>
     );
   }
@@ -58,7 +58,7 @@ const AdvertiserProfilePage = ({ params }: AdvertiserProfilePageProps) => {
   if (!isAuthenticated) {
     return (
       <div className="flex min-h-[50vh] items-center justify-center">
-        <p className="text-sm text-slate-500">로그인 후 이용해주세요.</p>
+        <p className="text-sm text-slate-500">Please sign in to continue.</p>
       </div>
     );
   }
@@ -66,7 +66,7 @@ const AdvertiserProfilePage = ({ params }: AdvertiserProfilePageProps) => {
   if (roleType !== 'advertiser') {
     return (
       <div className="flex min-h-[50vh] items-center justify-center">
-        <p className="text-sm text-slate-500">광고주 전용 페이지입니다.</p>
+        <p className="text-sm text-slate-500">This page is for advertisers only.</p>
       </div>
     );
   }

@@ -283,7 +283,7 @@ const mapApplicants = (
       const applicant = {
         id: row.id,
         influencerId: row.influencer_id,
-        influencerName: profile?.full_name ?? '이름 미확인',
+        influencerName: profile?.full_name ?? 'Name unavailable',
         influencerEmail: profile?.phone ?? null,
         status: row.status,
         submittedAt: row.submitted_at,
@@ -322,7 +322,7 @@ export const getAdvertiserCampaignDetail = async (
     return failure<AdvertiserCampaignDetailErrorCode>(
       500,
       advertiserCampaignDetailErrorCodes.supabaseFailure,
-      '광고주 정보를 확인하지 못했습니다.',
+      'Failed to load advertiser information.',
       profileResult.error.message,
     );
   }
@@ -331,7 +331,7 @@ export const getAdvertiserCampaignDetail = async (
     return failure<AdvertiserCampaignDetailErrorCode>(
       403,
       advertiserCampaignDetailErrorCodes.forbidden,
-      '광고주 전용 기능입니다.',
+      'This feature is for advertisers only.',
     );
   }
 
@@ -339,7 +339,7 @@ export const getAdvertiserCampaignDetail = async (
     return failure<AdvertiserCampaignDetailErrorCode>(
       403,
       advertiserCampaignDetailErrorCodes.profileUnverified,
-      '광고주 프로필 검증이 완료된 이후에 이용 가능합니다.',
+      'Available after your advertiser profile is verified.',
     );
   }
 
@@ -350,7 +350,7 @@ export const getAdvertiserCampaignDetail = async (
     return failure<AdvertiserCampaignDetailErrorCode>(
       500,
       advertiserCampaignDetailErrorCodes.supabaseFailure,
-      '체험단 정보를 확인하지 못했습니다.',
+      'Failed to load campaign information.',
       campaignResult.error.message,
     );
   }
@@ -359,7 +359,7 @@ export const getAdvertiserCampaignDetail = async (
     return failure<AdvertiserCampaignDetailErrorCode>(
       404,
       advertiserCampaignDetailErrorCodes.campaignNotFound,
-      '요청한 체험단을 찾을 수 없습니다.',
+      'The requested campaign was not found.',
     );
   }
 
@@ -367,7 +367,7 @@ export const getAdvertiserCampaignDetail = async (
     return failure<AdvertiserCampaignDetailErrorCode>(
       403,
       advertiserCampaignDetailErrorCodes.forbidden,
-      '해당 체험단을 관리할 권한이 없습니다.',
+      'You do not have permission to manage this campaign.',
     );
   }
 
@@ -378,7 +378,7 @@ export const getAdvertiserCampaignDetail = async (
     return failure<AdvertiserCampaignDetailErrorCode>(
       500,
       advertiserCampaignDetailErrorCodes.supabaseFailure,
-      '지원자 목록을 불러오지 못했습니다.',
+      'Failed to load applicants.',
       applicationResult.error.message,
     );
   }
@@ -398,7 +398,7 @@ export const getAdvertiserCampaignDetail = async (
     return failure<AdvertiserCampaignDetailErrorCode>(
       500,
       advertiserCampaignDetailErrorCodes.supabaseFailure,
-      '지원자 프로필을 불러오지 못했습니다.',
+      'Failed to load applicant profiles.',
       profilesResult.error.message,
     );
   }
@@ -408,7 +408,7 @@ export const getAdvertiserCampaignDetail = async (
     return failure<AdvertiserCampaignDetailErrorCode>(
       500,
       advertiserCampaignDetailErrorCodes.supabaseFailure,
-      '지원자 채널 정보를 불러오지 못했습니다.',
+      'Failed to load applicant channel information.',
       channelsResult.error.message,
     );
   }
@@ -418,7 +418,7 @@ export const getAdvertiserCampaignDetail = async (
     return failure<AdvertiserCampaignDetailErrorCode>(
       500,
       advertiserCampaignDetailErrorCodes.supabaseFailure,
-      '지원자 이벤트 로그를 불러오지 못했습니다.',
+      'Failed to load applicant event logs.',
       eventsResult.error.message,
     );
   }
@@ -432,7 +432,7 @@ export const getAdvertiserCampaignDetail = async (
     return failure<AdvertiserCampaignDetailErrorCode>(
       500,
       advertiserCampaignDetailErrorCodes.supabaseFailure,
-      '체험단 통계를 계산하지 못했습니다.',
+      'Failed to calculate campaign statistics.',
       error instanceof Error ? error.message : undefined,
     );
   }
@@ -459,7 +459,7 @@ export const getAdvertiserCampaignDetail = async (
     return failure<AdvertiserCampaignDetailErrorCode>(
       500,
       advertiserCampaignDetailErrorCodes.supabaseFailure,
-      '체험단 상세 정보를 구성하지 못했습니다.',
+      'Failed to build the campaign detail response.',
       parsed.error.format(),
     );
   }

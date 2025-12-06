@@ -28,13 +28,13 @@ export const MyApplicationsList = ({ items }: MyApplicationsListProps) => {
   if (items.length === 0) {
     return (
       <div className="flex min-h-[40vh] flex-col items-center justify-center gap-2 rounded-2xl border border-dashed border-slate-200 bg-white p-12 text-center">
-        <p className="text-base font-medium text-slate-700">아직 지원한 체험단이 없습니다.</p>
-        <p className="text-sm text-slate-500">관심 있는 체험단을 찾아 먼저 지원해 보세요.</p>
+        <p className="text-base font-medium text-slate-700">You haven&apos;t applied to any campaigns yet.</p>
+        <p className="text-sm text-slate-500">Find a campaign you like and apply to get started.</p>
         <Link
           href="/"
           className="mt-4 inline-flex items-center rounded-full bg-slate-900 px-5 py-2 text-sm font-medium text-white transition hover:bg-slate-700"
         >
-          체험단 찾아보기
+          Browse campaigns
         </Link>
       </div>
     );
@@ -70,7 +70,7 @@ export const MyApplicationsList = ({ items }: MyApplicationsListProps) => {
                 <div className="flex flex-wrap items-center gap-3">
                   <ApplicationStatusBadge status={item.status} />
                   {deadline ? (
-                    <span className="text-xs text-slate-500">모집 마감 {deadline}</span>
+                    <span className="text-xs text-slate-500">Applications close {deadline}</span>
                   ) : null}
                 </div>
                 <h2 className="text-xl font-semibold text-slate-900">{item.campaignTitle}</h2>
@@ -80,21 +80,21 @@ export const MyApplicationsList = ({ items }: MyApplicationsListProps) => {
               </div>
               <dl className="grid grid-cols-1 gap-3 text-sm text-slate-600 md:grid-cols-3">
                 <div className="rounded-xl bg-slate-50 px-4 py-3">
-                  <dt className="text-xs text-slate-500">지원 날짜</dt>
-                  <dd className="font-medium text-slate-800">{appliedAt ?? '기록 없음'}</dd>
+                  <dt className="text-xs text-slate-500">Applied on</dt>
+                  <dd className="font-medium text-slate-800">{appliedAt ?? 'No record'}</dd>
                 </div>
                 <div className="rounded-xl bg-slate-50 px-4 py-3">
-                  <dt className="text-xs text-slate-500">상태 변경</dt>
-                  <dd className="font-medium text-slate-800">{statusUpdatedAt ?? '기록 없음'}</dd>
+                  <dt className="text-xs text-slate-500">Status updated</dt>
+                  <dd className="font-medium text-slate-800">{statusUpdatedAt ?? 'No record'}</dd>
                 </div>
                 <div className="rounded-xl bg-slate-50 px-4 py-3">
-                  <dt className="text-xs text-slate-500">방문 예정일</dt>
-                  <dd className="font-medium text-slate-800">{plannedVisitOn ?? '미정'}</dd>
+                  <dt className="text-xs text-slate-500">Planned visit</dt>
+                  <dd className="font-medium text-slate-800">{plannedVisitOn ?? 'Not set'}</dd>
                 </div>
               </dl>
               {note ? (
                 <div className="rounded-2xl bg-slate-50 px-4 py-3 text-sm text-slate-600">
-                  <span className="font-medium text-slate-700">운영 메모: </span>
+                  <span className="font-medium text-slate-700">Organizer note: </span>
                   {note}
                 </div>
               ) : null}
@@ -103,7 +103,7 @@ export const MyApplicationsList = ({ items }: MyApplicationsListProps) => {
                   href={detailHref}
                   className="inline-flex items-center rounded-full border border-slate-200 px-4 py-2 text-sm text-slate-700 transition hover:border-slate-400"
                 >
-                  체험단 상세 보기
+                  View campaign details
                 </Link>
               </div>
             </div>

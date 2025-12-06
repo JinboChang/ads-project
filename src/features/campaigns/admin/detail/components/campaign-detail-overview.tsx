@@ -48,7 +48,7 @@ export const CampaignDetailOverview = ({
           onClick={onCloseCampaign}
           disabled={isCloseDisabled}
         >
-          모집 종료하기
+          Close recruiting
         </Button>
       );
     }
@@ -61,7 +61,7 @@ export const CampaignDetailOverview = ({
           onClick={onReopenCampaign}
           disabled={isReopenDisabled}
         >
-          모집 다시 시작
+          Reopen recruiting
         </Button>
       );
     }
@@ -94,40 +94,40 @@ export const CampaignDetailOverview = ({
           </div>
           <div className="flex flex-col items-end gap-3">
             <div className="text-sm text-slate-500">
-              모집 기간 {formatDate(campaign.applicationStartAt)} ~ {formatDate(campaign.applicationEndAt)}
+              Application period {formatDate(campaign.applicationStartAt)} ~ {formatDate(campaign.applicationEndAt)}
             </div>
             {renderActionButton()}
           </div>
         </div>
         <div className="grid gap-4 md:grid-cols-3">
           <div className="rounded-2xl bg-slate-50 p-4 text-sm text-slate-700">
-            <p className="text-xs text-slate-500">총 지원자</p>
+            <p className="text-xs text-slate-500">Total applicants</p>
             <p className="mt-1 text-xl font-semibold text-slate-900">
-              {campaign.stats.totalApplicants.toLocaleString()}명
+              {campaign.stats.totalApplicants.toLocaleString()}
             </p>
           </div>
           <div className="rounded-2xl bg-slate-50 p-4 text-sm text-slate-700">
-            <p className="text-xs text-slate-500">선정 완료</p>
+            <p className="text-xs text-slate-500">Approved</p>
             <p className="mt-1 text-xl font-semibold text-slate-900">
-              {campaign.stats.approvedCount.toLocaleString()}명
+              {campaign.stats.approvedCount.toLocaleString()}
             </p>
           </div>
           <div className="rounded-2xl bg-slate-50 p-4 text-sm text-slate-700">
-            <p className="text-xs text-slate-500">남은 선정 인원</p>
+            <p className="text-xs text-slate-500">Remaining slots</p>
             <p className="mt-1 text-xl font-semibold text-slate-900">
-              {remainingSlots.toLocaleString()}명
+              {remainingSlots.toLocaleString()}
             </p>
           </div>
         </div>
         {campaign.missionDetails ? (
           <div className="rounded-2xl bg-slate-50 p-5 text-sm text-slate-700">
-            <h2 className="text-sm font-semibold text-slate-900">미션 상세</h2>
+            <h2 className="text-sm font-semibold text-slate-900">Mission details</h2>
             <p className="mt-2 whitespace-pre-wrap text-slate-600">{campaign.missionDetails}</p>
           </div>
         ) : null}
         {campaign.storeLocation ? (
           <div className="rounded-2xl bg-slate-50 p-5 text-sm text-slate-700">
-            <h2 className="text-sm font-semibold text-slate-900">매장 위치</h2>
+            <h2 className="text-sm font-semibold text-slate-900">Store location</h2>
             <p className="mt-2 text-slate-600">{campaign.storeLocation}</p>
           </div>
         ) : null}

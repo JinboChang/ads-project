@@ -13,8 +13,8 @@ const _clientEnv = clientEnvSchema.safeParse({
 export type ClientEnv = z.infer<typeof clientEnvSchema>;
 
 if (!_clientEnv.success) {
-  console.error('환경 변수 검증 실패:', _clientEnv.error.flatten().fieldErrors);
-  throw new Error('환경 변수를 확인하세요.');
+  console.error('Failed to validate environment variables:', _clientEnv.error.flatten().fieldErrors);
+  throw new Error('Please check your environment variables.');
 }
 
 export const env: ClientEnv = _clientEnv.data;

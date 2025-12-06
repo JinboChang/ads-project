@@ -19,7 +19,7 @@ const createCampaign = async (input: AdvertiserCampaignCreateInput) => {
   const token = session.data.session?.access_token;
 
   if (!token) {
-    throw new Error('로그인이 필요한 서비스입니다.');
+    throw new Error('Please sign in to create a campaign.');
   }
 
   try {
@@ -35,7 +35,7 @@ const createCampaign = async (input: AdvertiserCampaignCreateInput) => {
 
     return AdvertiserCampaignSummarySchema.parse(response.data);
   } catch (error) {
-    const message = extractApiErrorMessage(error, '체험단을 생성하지 못했습니다.');
+    const message = extractApiErrorMessage(error, 'Failed to create the campaign.');
     throw new Error(message);
   }
 };

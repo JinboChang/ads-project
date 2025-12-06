@@ -45,7 +45,7 @@ export const CampaignList = () => {
       <div className="rounded-xl border border-rose-200 bg-rose-50 p-6 text-sm text-rose-700">
         {error instanceof Error
           ? error.message
-          : '체험단 목록을 불러오지 못했습니다.'}
+          : 'Failed to load campaign list.'}
       </div>
     );
   }
@@ -53,7 +53,7 @@ export const CampaignList = () => {
   if (!data || data.items.length === 0) {
     return (
       <div className="rounded-xl border border-slate-200 bg-white p-10 text-center text-sm text-slate-500">
-        현재 조건에 맞는 체험단이 없습니다. 필터를 변경해보세요.
+        No campaigns match your filters. Try adjusting them.
       </div>
     );
   }
@@ -72,7 +72,7 @@ export const CampaignList = () => {
       </div>
       <div className="flex items-center justify-between rounded-xl border border-slate-200 bg-white p-4 text-sm text-slate-600">
         <div>
-          총 {resolvedMeta.totalCount.toLocaleString()}건 · 페이지 {page} / {totalPages}
+          Total {resolvedMeta.totalCount.toLocaleString()} · Page {page} / {totalPages}
         </div>
         <div className="flex items-center gap-2">
           <button
@@ -81,7 +81,7 @@ export const CampaignList = () => {
             disabled={page <= 1}
             className="rounded-md border border-slate-200 px-3 py-1 transition hover:border-slate-400 disabled:cursor-not-allowed disabled:border-slate-200 disabled:text-slate-400"
           >
-            이전
+            Previous
           </button>
           <button
             type="button"
@@ -89,7 +89,7 @@ export const CampaignList = () => {
             disabled={!resolvedMeta.hasMore}
             className="rounded-md border border-slate-200 px-3 py-1 transition hover:border-slate-400 disabled:cursor-not-allowed disabled:border-slate-200 disabled:text-slate-400"
           >
-            다음
+            Next
           </button>
         </div>
       </div>

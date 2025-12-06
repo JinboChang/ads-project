@@ -38,7 +38,7 @@ export const useCampaignDetailQuery = (
     queryKey: ['campaigns', 'detail', campaignId],
     queryFn: () => {
       if (!campaignId || !Number.isFinite(campaignId) || campaignId <= 0) {
-        throw new Error('?좏슚?섏? ?딆? 泥댄뿕??ID?낅땲??');
+        throw new Error('Invalid campaign ID.');
       }
       return fetchCampaignDetail(campaignId);
     },

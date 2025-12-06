@@ -168,7 +168,7 @@ export const getInfluencerApplications = async (
     return failure<InfluencerApplicationsErrorCode>(
       500,
       influencerApplicationsErrorCodes.supabaseFailure,
-      '사용자 정보를 확인하지 못했습니다.',
+      'Failed to verify user information.',
       profileResult.error.message,
     );
   }
@@ -177,7 +177,7 @@ export const getInfluencerApplications = async (
     return failure<InfluencerApplicationsErrorCode>(
       403,
       influencerApplicationsErrorCodes.forbidden,
-      '인플루언서만 이용할 수 있는 기능입니다.',
+      'This feature is available to influencers only.',
     );
   }
 
@@ -188,7 +188,7 @@ export const getInfluencerApplications = async (
     return failure<InfluencerApplicationsErrorCode>(
       500,
       influencerApplicationsErrorCodes.supabaseFailure,
-      '지원 목록을 불러오지 못했습니다.',
+      'Failed to load applications.',
       applicationsResult.error.message,
     );
   }
@@ -203,7 +203,7 @@ export const getInfluencerApplications = async (
     return failure<InfluencerApplicationsErrorCode>(
       500,
       influencerApplicationsErrorCodes.supabaseFailure,
-      '지원 상태 이력을 불러오지 못했습니다.',
+      'Failed to load application history.',
       eventsResult.error.message,
     );
   }

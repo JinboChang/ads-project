@@ -16,7 +16,7 @@ const fetchAdvertiserCampaignDetail = async (campaignId: number) => {
   const token = session.data.session?.access_token;
 
   if (!token) {
-    throw new Error("로그인이 필요한 서비스입니다.");
+    throw new Error("Please sign in to view this campaign.");
   }
 
   const path = buildAdvertiserCampaignDetailPath(campaignId);
@@ -37,11 +37,11 @@ const fetchAdvertiserCampaignDetail = async (campaignId: number) => {
       const message =
         typeof payload?.error?.message === "string"
           ? payload.error.message
-          : "체험단 상세 정보를 불러오지 못했습니다.";
+          : "Failed to load campaign details.";
       throw new Error(message);
     }
 
-    throw new Error("체험단 상세 정보를 불러오지 못했습니다.");
+    throw new Error("Failed to load campaign details.");
   }
 };
 
@@ -53,7 +53,7 @@ export const useAdvertiserCampaignDetailQuery = (
     queryKey: queryKeys.campaigns.advertiser.detail(campaignId ?? "unknown"),
     queryFn: () => {
       if (!campaignId || !Number.isFinite(campaignId)) {
-        throw new Error("유효하지 않은 체험단 ID입니다.");
+        throw new Error("Invalid campaign ID.");
       }
 
       return fetchAdvertiserCampaignDetail(campaignId);

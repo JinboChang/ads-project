@@ -47,8 +47,8 @@ export const CampaignApplicationForm = ({
       });
 
       toast({
-        title: '지원이 완료되었습니다.',
-        description: '신청 내역은 내 지원 목록에서 확인할 수 있습니다.',
+        title: 'Application submitted.',
+        description: 'You can view this request in My Applications.',
       });
 
       onSuccess();
@@ -63,12 +63,12 @@ export const CampaignApplicationForm = ({
       className="flex flex-col gap-4 rounded-xl border border-slate-200 bg-white p-6"
     >
       <label className="flex flex-col gap-2 text-sm text-slate-700">
-        각오 한마디
+        Motivation
         <textarea
           rows={4}
           {...form.register('motivationNote')}
           className="rounded-md border border-slate-300 px-3 py-2 focus:border-slate-500 focus:outline-none"
-          placeholder="예: 체험단 미션을 성실하게 수행하겠습니다."
+          placeholder="e.g., I will diligently complete the campaign mission."
           disabled={isPending}
         />
         {form.formState.errors.motivationNote ? (
@@ -78,7 +78,7 @@ export const CampaignApplicationForm = ({
         ) : null}
       </label>
       <label className="flex flex-col gap-2 text-sm text-slate-700">
-        방문 예정일
+        Planned visit date
         <input
           type="date"
           {...form.register('plannedVisitOn')}
@@ -98,14 +98,14 @@ export const CampaignApplicationForm = ({
           className="rounded-md border border-slate-200 px-3 py-2 text-sm text-slate-600 transition hover:border-slate-400"
           disabled={isPending}
         >
-          취소
+          Cancel
         </button>
         <button
           type="submit"
           disabled={isPending}
           className="rounded-md bg-slate-900 px-4 py-2 text-sm font-medium text-white transition hover:bg-slate-700 disabled:cursor-not-allowed disabled:bg-slate-400"
         >
-          {isPending ? '지원 중...' : '지원 제출'}
+          {isPending ? 'Submitting...' : 'Submit application'}
         </button>
       </div>
     </form>

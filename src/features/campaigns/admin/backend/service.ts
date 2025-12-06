@@ -147,7 +147,7 @@ export const listAdvertiserCampaigns = async (
     return failure<AdvertiserCampaignAdminErrorCode>(
       500,
       advertiserCampaignAdminErrorCodes.supabaseFailure,
-      '광고주 정보를 확인하지 못했습니다.',
+      'Failed to load advertiser information.',
       profileResult.error.message,
     );
   }
@@ -156,7 +156,7 @@ export const listAdvertiserCampaigns = async (
     return failure<AdvertiserCampaignAdminErrorCode>(
       403,
       advertiserCampaignAdminErrorCodes.forbidden,
-      '광고주 전용 기능입니다.',
+      'This feature is for advertisers only.',
     );
   }
 
@@ -164,7 +164,7 @@ export const listAdvertiserCampaigns = async (
     return failure<AdvertiserCampaignAdminErrorCode>(
       403,
       advertiserCampaignAdminErrorCodes.profileUnverified,
-      '광고주 프로필 검증이 완료된 이후에 이용 가능합니다.',
+      'Available after your advertiser profile is verified.',
     );
   }
 
@@ -179,7 +179,7 @@ export const listAdvertiserCampaigns = async (
     return failure<AdvertiserCampaignAdminErrorCode>(
       500,
       advertiserCampaignAdminErrorCodes.supabaseFailure,
-      '체험단 목록을 불러오지 못했습니다.',
+      'Failed to load campaigns.',
       campaignsResult.error.message,
     );
   }
@@ -196,7 +196,7 @@ export const listAdvertiserCampaigns = async (
     return failure<AdvertiserCampaignAdminErrorCode>(
       500,
       advertiserCampaignAdminErrorCodes.supabaseFailure,
-      '체험단 통계를 계산하지 못했습니다.',
+      'Failed to calculate campaign statistics.',
       error instanceof Error ? error.message : undefined,
     );
   }
@@ -225,7 +225,7 @@ export const createAdvertiserCampaign = async (
     return failure<AdvertiserCampaignAdminErrorCode>(
       500,
       advertiserCampaignAdminErrorCodes.supabaseFailure,
-      '광고주 정보를 확인하지 못했습니다.',
+      'Failed to load advertiser information.',
       profileResult.error.message,
     );
   }
@@ -234,7 +234,7 @@ export const createAdvertiserCampaign = async (
     return failure<AdvertiserCampaignAdminErrorCode>(
       403,
       advertiserCampaignAdminErrorCodes.forbidden,
-      '광고주 전용 기능입니다.',
+      'This feature is for advertisers only.',
     );
   }
 
@@ -242,7 +242,7 @@ export const createAdvertiserCampaign = async (
     return failure<AdvertiserCampaignAdminErrorCode>(
       403,
       advertiserCampaignAdminErrorCodes.profileUnverified,
-      '광고주 프로필 검증이 완료된 이후에 이용 가능합니다.',
+      'Available after your advertiser profile is verified.',
     );
   }
 
@@ -253,7 +253,7 @@ export const createAdvertiserCampaign = async (
     return failure<AdvertiserCampaignAdminErrorCode>(
       500,
       advertiserCampaignAdminErrorCodes.supabaseFailure,
-      '체험단 정보를 확인하지 못했습니다.',
+      'Failed to load campaign information.',
       duplicateResult.error.message,
     );
   }
@@ -262,7 +262,7 @@ export const createAdvertiserCampaign = async (
     return failure<AdvertiserCampaignAdminErrorCode>(
       409,
       advertiserCampaignAdminErrorCodes.duplicateCampaign,
-      '동일한 모집 기간과 제목의 체험단이 이미 존재합니다.',
+      'A campaign with the same title and dates already exists.',
     );
   }
 
@@ -273,7 +273,7 @@ export const createAdvertiserCampaign = async (
     return failure<AdvertiserCampaignAdminErrorCode>(
       500,
       advertiserCampaignAdminErrorCodes.supabaseFailure,
-      '체험단을 생성하지 못했습니다.',
+      'Failed to create the campaign.',
       insertResult.error.message,
     );
   }
@@ -282,7 +282,7 @@ export const createAdvertiserCampaign = async (
     return failure<AdvertiserCampaignAdminErrorCode>(
       500,
       advertiserCampaignAdminErrorCodes.supabaseFailure,
-      '생성된 체험단 정보를 확인하지 못했습니다.',
+      'Failed to retrieve the created campaign.',
     );
   }
 

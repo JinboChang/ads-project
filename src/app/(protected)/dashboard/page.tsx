@@ -82,21 +82,21 @@ export default function DashboardPage({ params }: DashboardPageProps) {
   return (
     <div className="mx-auto flex max-w-5xl flex-col gap-8 px-6 py-12">
       <header className="space-y-2">
-        <h1 className="text-3xl font-semibold text-slate-900">대시보드</h1>
+        <h1 className="text-3xl font-semibold text-slate-900">Dashboard</h1>
         <p className="text-sm text-slate-500">
-          {user?.email ? `${user.email} 님 환영합니다.` : "계정을 불러오는 중입니다."}
+          {user?.email ? `Welcome, ${user.email}.` : "Loading your account..."}
         </p>
       </header>
 
       {shouldCompleteInfluencerOnboarding ? (
         <section className="rounded-3xl border border-amber-200 bg-amber-50 p-6">
-          <h2 className="text-lg font-medium text-amber-900">채널 정보를 등록하면 온보딩이 완료됩니다.</h2>
+          <h2 className="text-lg font-medium text-amber-900">Complete onboarding by adding your channel info.</h2>
           <p className="mt-2 text-sm text-amber-800">
-            채널 정보만 입력하면 바로 체험단 지원을 시작할 수 있어요. 지금 등록해 보세요.
+            Add your channel details to start applying right away.
           </p>
           <div className="mt-4">
             <Button asChild className="bg-amber-600 text-white hover:bg-amber-700">
-              <Link href="/influencer/profile">채널 정보 등록하기</Link>
+              <Link href="/influencer/profile">Add channel info</Link>
             </Button>
           </div>
         </section>
@@ -104,13 +104,13 @@ export default function DashboardPage({ params }: DashboardPageProps) {
 
       {shouldCompleteAdvertiserOnboarding ? (
         <section className="rounded-3xl border border-emerald-200 bg-emerald-50 p-6">
-          <h2 className="text-lg font-medium text-emerald-900">사업자 정보를 등록하고 체험단 모집을 시작해 보세요.</h2>
+          <h2 className="text-lg font-medium text-emerald-900">Add your business info and start recruiting.</h2>
           <p className="mt-2 text-sm text-emerald-800">
-            업체 정보를 저장하면 즉시 체험단 모집 기능을 사용할 수 있습니다. 운영팀이 사후 검토를 진행할 수 있으니 정확히 입력해주세요.
+            Save your business details to unlock campaign recruiting immediately. Our team may review it afterward, so please enter accurate information.
           </p>
           <div className="mt-4">
             <Button asChild className="bg-emerald-600 text-white hover:bg-emerald-700">
-              <Link href="/advertiser/profile">사업자 정보 등록하기</Link>
+              <Link href="/advertiser/profile">Add business info</Link>
             </Button>
           </div>
         </section>
@@ -120,15 +120,15 @@ export default function DashboardPage({ params }: DashboardPageProps) {
         <section className="space-y-4 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <div>
-              <h2 className="text-lg font-medium text-slate-900">체험단 지원 현황</h2>
-              <p className="text-sm text-slate-600">최근 지원 상태를 한눈에 확인해 보세요.</p>
+              <h2 className="text-lg font-medium text-slate-900">Application overview</h2>
+              <p className="text-sm text-slate-600">See the latest status of your applications at a glance.</p>
             </div>
             <Button
               asChild
               variant="outline"
               className="border-slate-300 text-slate-900 hover:bg-slate-100"
             >
-              <Link href="/influencer/applications">내 지원 목록</Link>
+              <Link href="/influencer/applications">My applications</Link>
             </Button>
           </div>
 
@@ -141,14 +141,14 @@ export default function DashboardPage({ params }: DashboardPageProps) {
 
           {myApplicationsQuery.isError ? (
             <div className="rounded-2xl border border-rose-200 bg-rose-50 p-6 text-sm text-rose-600">
-              <p className="font-medium">지원 현황을 불러오지 못했습니다.</p>
-              <p>{myApplicationsQuery.error?.message ?? '다시 시도해 주세요.'}</p>
+              <p className="font-medium">Failed to load applications.</p>
+              <p>{myApplicationsQuery.error?.message ?? 'Please try again.'}</p>
               <button
                 type="button"
                 onClick={() => myApplicationsQuery.refetch()}
                 className="mt-3 inline-flex items-center rounded-full border border-rose-200 px-4 py-2 text-xs font-medium text-rose-600 transition hover:border-rose-400"
               >
-                다시 시도
+                Retry
               </button>
             </div>
           ) : null}
@@ -157,14 +157,14 @@ export default function DashboardPage({ params }: DashboardPageProps) {
             <>
               <div className="grid gap-3 md:grid-cols-5">
                 <div className="rounded-2xl bg-slate-900 px-4 py-3 text-white">
-                  <p className="text-xs text-slate-200">총 지원</p>
-                  <p className="mt-2 text-2xl font-semibold">{totalApplications.toLocaleString()}건</p>
+                  <p className="text-xs text-slate-200">Total applications</p>
+                  <p className="mt-2 text-2xl font-semibold">{totalApplications.toLocaleString()}</p>
                 </div>
                 {statusOrder.map((status) => (
                   <div key={status} className="rounded-2xl bg-slate-50 px-4 py-3 text-sm text-slate-700">
                     <p className="text-xs text-slate-500">{applicationStatusLabelMap[status]}</p>
                     <p className="mt-1 text-xl font-semibold text-slate-900">
-                      {applicationCounts[status].toLocaleString()}건
+                      {applicationCounts[status].toLocaleString()}
                     </p>
                   </div>
                 ))}
@@ -172,7 +172,8 @@ export default function DashboardPage({ params }: DashboardPageProps) {
 
               {latestApplications.length > 0 ? (
                 <div className="space-y-3">
-                  <h3 className="text-sm font-semibold text-slate-800">최근 상태 업데이트</h3>
+                  <h3 className="text-sm font-semibold text-slate-800">Latest status updates</h3>
+
                   <ul className="space-y-2">
                     {latestApplications.map((application) => {
                       const statusDate = formatDate(application.statusUpdatedAt) ??
@@ -186,7 +187,7 @@ export default function DashboardPage({ params }: DashboardPageProps) {
                           <div className="flex flex-col gap-1">
                             <span className="text-slate-900">{application.campaignTitle}</span>
                             <span className="text-xs text-slate-500">
-                              {statusDate ? `${statusDate} 업데이트` : '기록 없음'}
+                              {statusDate ? `Updated on ${statusDate}` : 'No record'}
                             </span>
                           </div>
                           <div className="flex items-center gap-3">
@@ -195,7 +196,7 @@ export default function DashboardPage({ params }: DashboardPageProps) {
                               href={`/campaigns/${application.campaignId}`}
                               className="text-xs font-medium text-slate-600 underline hover:text-slate-900"
                             >
-                              상세 보기
+                              View details
                             </Link>
                           </div>
                         </li>
@@ -204,7 +205,7 @@ export default function DashboardPage({ params }: DashboardPageProps) {
                   </ul>
                 </div>
               ) : (
-                <p className="text-sm text-slate-500">아직 지원한 체험단이 없습니다.</p>
+                <p className="text-sm text-slate-500">You haven&apos;t applied to any campaigns yet.</p>
               )}
             </>
           ) : null}
@@ -213,13 +214,13 @@ export default function DashboardPage({ params }: DashboardPageProps) {
 
       {canManageCampaigns ? (
         <section className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
-          <h2 className="text-lg font-medium text-slate-900">체험단을 운영할 준비가 되었어요.</h2>
+          <h2 className="text-lg font-medium text-slate-900">You&apos;re ready to manage campaigns.</h2>
           <p className="mt-2 text-sm text-slate-600">
-            체험단 관리 페이지에서 모집 현황을 확인하고 신규 체험단을 등록해 보세요.
+            Head to the campaign management page to review recruiting status and add new campaigns.
           </p>
           <div className="mt-4">
             <Button asChild variant="outline" className="border-slate-300 text-slate-900 hover:bg-slate-100">
-              <Link href="/advertiser/campaigns">체험단 관리로 이동</Link>
+              <Link href="/advertiser/campaigns">Go to campaign management</Link>
             </Button>
           </div>
         </section>
@@ -227,7 +228,7 @@ export default function DashboardPage({ params }: DashboardPageProps) {
 
       <section className="overflow-hidden rounded-xl border border-slate-200">
         <Image
-          alt="대시보드 안내 이미지"
+          alt="Dashboard illustration"
           src="https://picsum.photos/seed/dashboard/960/420"
           width={960}
           height={420}
@@ -238,15 +239,15 @@ export default function DashboardPage({ params }: DashboardPageProps) {
 
       <section className="grid gap-4 md:grid-cols-2">
         <article className="rounded-lg border border-slate-200 p-4">
-          <h2 className="text-lg font-medium text-slate-900">서비스 상태</h2>
+          <h2 className="text-lg font-medium text-slate-900">Service status</h2>
           <p className="mt-2 text-sm text-slate-600">
-            Supabase와 Hono API는 정상 동작 중입니다. 문제 발생 시 헤더의 로그아웃/로그인으로 세션을 초기화해 주세요.
+            Supabase and Hono APIs are operating normally. If you encounter issues, try resetting your session by signing out and back in from the header.
           </p>
         </article>
         <article className="rounded-lg border border-slate-200 p-4">
-          <h2 className="text-lg font-medium text-slate-900">체험단 지원 현황 가이드</h2>
+          <h2 className="text-lg font-medium text-slate-900">Application guide</h2>
           <p className="mt-2 text-sm text-slate-600">
-            내 지원 목록에서 상태별 진행 상황을 확인하고, 빠르게 다음 행동을 이어가 보세요.
+            Check your application list by status and follow up quickly on the next step.
           </p>
         </article>
       </section>

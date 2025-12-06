@@ -5,16 +5,16 @@ import { campaignSortValues, campaignStatusValues } from '@/features/campaigns/l
 import { useCampaignFilterStore } from '@/features/campaigns/browse/hooks/useCampaignFilters';
 
 const statusLabels: Record<string, string> = {
-  all: '전체',
-  draft: '초안',
-  recruiting: '모집중',
-  recruitment_closed: '모집 종료',
-  completed: '완료',
+  all: 'All',
+  draft: 'Draft',
+  recruiting: 'Recruiting',
+  recruitment_closed: 'Recruitment Closed',
+  completed: 'Completed',
 };
 
 const sortLabels: Record<string, string> = {
-  recent: '최신순',
-  endingSoon: '마감 임박순',
+  recent: 'Newest first',
+  endingSoon: 'Ending soon',
 };
 
 export const CampaignFilterBar = () => {
@@ -62,18 +62,18 @@ export const CampaignFilterBar = () => {
   return (
     <div className="flex flex-col gap-4 rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
       <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-        <h2 className="text-lg font-semibold text-slate-800">체험단 탐색</h2>
+        <h2 className="text-lg font-semibold text-slate-800">Browse campaigns</h2>
         <button
           type="button"
           onClick={reset}
           className="self-start rounded-md border border-slate-200 px-3 py-1 text-xs text-slate-600 transition hover:border-slate-400 hover:bg-slate-100 md:self-auto"
         >
-          필터 초기화
+          Reset filters
         </button>
       </div>
       <div className="grid gap-4 md:grid-cols-3">
         <label className="flex flex-col gap-2 text-sm text-slate-700">
-          상태
+          Status
           <select
             value={status}
             onChange={handleStatusChange}
@@ -90,7 +90,7 @@ export const CampaignFilterBar = () => {
           </select>
         </label>
         <label className="flex flex-col gap-2 text-sm text-slate-700">
-          정렬
+          Sort
           <select
             value={sort}
             onChange={handleSortChange}
@@ -104,12 +104,12 @@ export const CampaignFilterBar = () => {
           </select>
         </label>
         <label className="flex flex-col gap-2 text-sm text-slate-700">
-          지역
+          Location
           <input
             type="text"
             value={location}
             onChange={handleLocationChange}
-            placeholder="예: 서울"
+            placeholder="e.g., Seoul"
             className="rounded-md border border-slate-300 px-3 py-2 focus:border-slate-500 focus:outline-none"
           />
         </label>

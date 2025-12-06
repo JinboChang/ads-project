@@ -24,7 +24,7 @@ export const registerCampaignBrowseRoutes = (app: Hono<AppEnv>) => {
         failure(
           400,
           campaignBrowseErrorCodes.invalidQuery,
-          '체험단 목록 요청 값이 유효하지 않습니다.',
+          'The campaign list query parameters are invalid.',
           parsed.error.format(),
         ),
       );

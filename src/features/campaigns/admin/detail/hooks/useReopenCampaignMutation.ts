@@ -24,7 +24,7 @@ const reopenCampaignRequest = async (
   const token = session.data.session?.access_token;
 
   if (!token) {
-    throw new Error("로그인이 필요한 서비스입니다.");
+    throw new Error("Please sign in to manage this campaign.");
   }
 
   try {
@@ -40,7 +40,7 @@ const reopenCampaignRequest = async (
 
     return CampaignWorkflowResultSchema.parse(response.data);
   } catch (error) {
-    const message = extractApiErrorMessage(error, "모집 재시작에 실패했습니다.");
+    const message = extractApiErrorMessage(error, "Failed to reopen the campaign.");
     throw new Error(message);
   }
 };

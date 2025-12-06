@@ -11,7 +11,7 @@ const getAuthHeaders = async () => {
   const token = sessionResult.data.session?.access_token;
 
   if (!token) {
-    throw new Error('로그인이 필요한 서비스입니다.');
+    throw new Error('Please sign in to view your influencer profile.');
   }
 
   return {

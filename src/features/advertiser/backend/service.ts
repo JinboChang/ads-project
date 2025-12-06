@@ -76,7 +76,7 @@ export const getAdvertiserProfile = async (
     return failure(
       500,
       advertiserErrorCodes.profileFetchFailed,
-      '광고주 정보를 불러오지 못했습니다.',
+      'Failed to load advertiser information.',
       result.error.message,
     );
   }
@@ -100,7 +100,7 @@ const ensureUniqueBusinessNumber = async (
     return failure(
       500,
       advertiserErrorCodes.supabaseFailure,
-      '사업자 정보를 확인하지 못했습니다.',
+      'Failed to verify the business registration number.',
       duplicateResult.error.message,
     );
   }
@@ -109,7 +109,7 @@ const ensureUniqueBusinessNumber = async (
     return failure(
       409,
       advertiserErrorCodes.duplicateBusinessRegistration,
-      '이미 등록된 사업자등록번호입니다.',
+      'This business registration number is already registered.',
     );
   }
 
@@ -134,7 +134,7 @@ const upsertProfileRow = async (
     return failure(
       500,
       advertiserErrorCodes.supabaseFailure,
-      '광고주 정보를 확인하지 못했습니다.',
+      'Failed to load advertiser information.',
       existing.error.message,
     );
   }
@@ -158,7 +158,7 @@ const upsertProfileRow = async (
       return failure(
         500,
         advertiserErrorCodes.supabaseFailure,
-        '광고주 정보를 저장하지 못했습니다.',
+        'Failed to save advertiser information.',
         updateResult.error.message,
       );
     }
@@ -179,7 +179,7 @@ const upsertProfileRow = async (
     return failure(
       500,
       advertiserErrorCodes.supabaseFailure,
-      '광고주 정보를 저장하지 못했습니다.',
+      'Failed to save advertiser information.',
       insertResult.error.message,
     );
   }
@@ -215,7 +215,7 @@ export const upsertAdvertiserProfile = async (
     return failure(
       500,
       advertiserErrorCodes.verificationEnqueueFailed,
-      '사업자 정보 검증을 요청하지 못했습니다.',
+      'Failed to request business verification.',
     );
   }
 

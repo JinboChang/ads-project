@@ -56,12 +56,12 @@ export const ApplicantTable = ({
                 disabled={!selectionEnabled || applicants.length === 0}
               />
             </th>
-            <th className="px-4 py-3 text-left text-xs font-semibold text-slate-500">지원자</th>
-            <th className="px-4 py-3 text-left text-xs font-semibold text-slate-500">채널</th>
-            <th className="px-4 py-3 text-left text-xs font-semibold text-slate-500">지원 일시</th>
-            <th className="px-4 py-3 text-left text-xs font-semibold text-slate-500">방문 예정일</th>
-            <th className="px-4 py-3 text-left text-xs font-semibold text-slate-500">상태</th>
-            <th className="px-4 py-3 text-left text-xs font-semibold text-slate-500">메모</th>
+            <th className="px-4 py-3 text-left text-xs font-semibold text-slate-500">Applicant</th>
+            <th className="px-4 py-3 text-left text-xs font-semibold text-slate-500">Channel</th>
+            <th className="px-4 py-3 text-left text-xs font-semibold text-slate-500">Applied at</th>
+            <th className="px-4 py-3 text-left text-xs font-semibold text-slate-500">Planned visit</th>
+            <th className="px-4 py-3 text-left text-xs font-semibold text-slate-500">Status</th>
+            <th className="px-4 py-3 text-left text-xs font-semibold text-slate-500">Note</th>
           </tr>
         </thead>
         <tbody className="divide-y divide-slate-100">
@@ -94,7 +94,7 @@ export const ApplicantTable = ({
                 <td className="px-4 py-3">
                   <div className="flex flex-col gap-1">
                     {applicant.channels.length === 0 ? (
-                      <span className="text-xs text-slate-500">채널 정보 없음</span>
+                      <span className="text-xs text-slate-500">No channel info</span>
                     ) : (
                       applicant.channels.map((channel, index) => {
                         const labelParts = [channel.platform];
@@ -114,7 +114,7 @@ export const ApplicantTable = ({
                                 rel="noreferrer"
                                 className="ml-2 text-emerald-600 underline"
                               >
-                                바로가기
+                                Open
                               </a>
                             ) : null}
                           </span>
@@ -124,10 +124,10 @@ export const ApplicantTable = ({
                   </div>
                 </td>
                 <td className="px-4 py-3 text-xs text-slate-600">{submittedAt ?? "-"}</td>
-                <td className="px-4 py-3 text-xs text-slate-600">{plannedVisitOn ?? "미정"}</td>
+                <td className="px-4 py-3 text-xs text-slate-600">{plannedVisitOn ?? "Not set"}</td>
                 <td className="px-4 py-3 text-xs font-semibold text-slate-700">{statusLabel}</td>
                 <td className="px-4 py-3 text-xs text-slate-600">
-                  {applicant.latestNote ?? applicant.motivationNote ?? "메모 없음"}
+                  {applicant.latestNote ?? applicant.motivationNote ?? "No notes"}
                 </td>
               </tr>
             );
@@ -136,7 +136,7 @@ export const ApplicantTable = ({
       </table>
       {applicants.length === 0 ? (
         <div className="px-6 py-10 text-center text-sm text-slate-500">
-          표시할 지원자가 없습니다.
+          No applicants to display.
         </div>
       ) : null}
     </div>

@@ -37,7 +37,7 @@ export const registerAdvertiserCampaignAdminRoutes = (app: Hono<AppEnv>) => {
         failure(
           401,
           advertiserCampaignAdminErrorCodes.unauthorized,
-          '로그인이 필요한 서비스입니다.',
+          'Please sign in to continue.',
         ),
       );
     }
@@ -52,7 +52,7 @@ export const registerAdvertiserCampaignAdminRoutes = (app: Hono<AppEnv>) => {
         failure(
           400,
           advertiserCampaignAdminErrorCodes.invalidParams,
-          '체험단 목록 조회 요청 값이 유효하지 않습니다.',
+          'The campaign list query parameters are invalid.',
           queryParams.error.format(),
         ),
       );
@@ -67,7 +67,7 @@ export const registerAdvertiserCampaignAdminRoutes = (app: Hono<AppEnv>) => {
         failure(
           500,
           advertiserCampaignAdminErrorCodes.supabaseFailure,
-          '사용자 인증 정보를 확인하지 못했습니다.',
+          'Failed to verify authentication.',
           userResult.error.message,
         ),
       );
@@ -81,7 +81,7 @@ export const registerAdvertiserCampaignAdminRoutes = (app: Hono<AppEnv>) => {
         failure(
           401,
           advertiserCampaignAdminErrorCodes.unauthorized,
-          '로그인이 필요한 서비스입니다.',
+          'Please sign in to continue.',
         ),
       );
     }
@@ -108,7 +108,7 @@ export const registerAdvertiserCampaignAdminRoutes = (app: Hono<AppEnv>) => {
         failure(
           401,
           advertiserCampaignAdminErrorCodes.unauthorized,
-          '로그인이 필요한 서비스입니다.',
+          'Please sign in to continue.',
         ),
       );
     }
@@ -123,7 +123,7 @@ export const registerAdvertiserCampaignAdminRoutes = (app: Hono<AppEnv>) => {
         failure(
           400,
           advertiserCampaignAdminErrorCodes.invalidParams,
-          '요청 본문을 해석하지 못했습니다.',
+          'Could not parse the request body.',
           error instanceof Error ? error.message : undefined,
         ),
       );
@@ -137,7 +137,7 @@ export const registerAdvertiserCampaignAdminRoutes = (app: Hono<AppEnv>) => {
         failure(
           400,
           advertiserCampaignAdminErrorCodes.invalidParams,
-          '체험단 등록 요청 값이 유효하지 않습니다.',
+          'The campaign creation payload is invalid.',
           payload.error.format(),
         ),
       );
@@ -152,7 +152,7 @@ export const registerAdvertiserCampaignAdminRoutes = (app: Hono<AppEnv>) => {
         failure(
           500,
           advertiserCampaignAdminErrorCodes.supabaseFailure,
-          '사용자 인증 정보를 확인하지 못했습니다.',
+          'Failed to verify authentication.',
           userResult.error.message,
         ),
       );
@@ -166,7 +166,7 @@ export const registerAdvertiserCampaignAdminRoutes = (app: Hono<AppEnv>) => {
         failure(
           401,
           advertiserCampaignAdminErrorCodes.unauthorized,
-          '로그인이 필요한 서비스입니다.',
+          'Please sign in to continue.',
         ),
       );
     }

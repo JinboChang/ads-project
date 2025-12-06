@@ -17,7 +17,7 @@ const postSignup = async (payload: SignupRequest): Promise<SignupResponse> => {
 
     return SignupResponseSchema.parse(data);
   } catch (error) {
-    const fallbackMessage = '회원가입에 실패했습니다.';
+    const fallbackMessage = 'Failed to sign up.';
     const message = extractApiErrorMessage(error, fallbackMessage);
     throw new Error(message);
   }

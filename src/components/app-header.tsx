@@ -34,7 +34,7 @@ export const AppHeader = () => {
     !isProfileLoading &&
     (influencerProfile?.onboardingStatus ?? 'pending') === 'pending';
 
-  const userEmail = useMemo(() => user?.email ?? "로그인됨", [user?.email]);
+  const userEmail = useMemo(() => user?.email ?? "Signed in", [user?.email]);
 
   const handleLogout = useCallback(async () => {
     if (isSigningOut) {
@@ -46,14 +46,14 @@ export const AppHeader = () => {
     try {
       await signOut();
       toast({
-        title: "로그아웃되었습니다.",
+        title: "Signed out.",
       });
       router.replace(REDIRECT_AFTER_SIGNOUT);
     } catch (error) {
       const description =
-        error instanceof Error ? error.message : "알 수 없는 오류가 발생했습니다.";
+        error instanceof Error ? error.message : "An unknown error occurred.";
       toast({
-        title: "로그아웃에 실패했습니다.",
+        title: "Failed to sign out.",
         description,
         variant: "destructive",
       });
@@ -80,7 +80,7 @@ export const AppHeader = () => {
                 className="bg-slate-900 px-3 py-2 text-sm font-medium text-white transition hover:bg-slate-800"
                 disabled={isSigningOut}
               >
-                <Link href="/influencer/profile">채널 정보 등록</Link>
+                <Link href="/influencer/profile">Add channel info</Link>
               </Button>
             ) : null}
             <Button
@@ -91,16 +91,16 @@ export const AppHeader = () => {
               className="gap-1"
             >
               <LogOut className="h-4 w-4" />
-              {isSigningOut ? "로그아웃 중..." : "로그아웃"}
+              {isSigningOut ? "Signing out..." : "Sign out"}
             </Button>
           </div>
         ) : (
           <div className="flex items-center gap-2">
             <Button asChild variant="ghost">
-              <Link href="/login">로그인</Link>
+              <Link href="/login">Sign in</Link>
             </Button>
             <Button asChild>
-              <Link href="/signup">회원가입</Link>
+              <Link href="/signup">Sign up</Link>
             </Button>
           </div>
         )}

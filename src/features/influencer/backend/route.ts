@@ -40,7 +40,7 @@ const parsePayload = async (request: Request): Promise<ParsedPayload> => {
         error: failure(
           400,
           influencerErrorCodes.invalidPayload,
-          '인플루언서 프로필 요청 본문이 유효하지 않습니다.',
+          'The influencer profile payload is invalid.',
           parsed.error.format(),
         ),
       };
@@ -53,7 +53,7 @@ const parsePayload = async (request: Request): Promise<ParsedPayload> => {
       error: failure(
         400,
         influencerErrorCodes.invalidPayload,
-        '인플루언서 프로필 요청 본문을 해석할 수 없습니다.',
+        'Could not parse the influencer profile request body.',
       ),
     };
   }
@@ -71,7 +71,7 @@ const resolveInfluencerUser = async (
     return failure(
       401,
       influencerErrorCodes.unauthorized,
-      '접근 토큰이 필요합니다.',
+      'An access token is required.',
     );
   }
 
@@ -81,7 +81,7 @@ const resolveInfluencerUser = async (
     return failure(
       401,
       influencerErrorCodes.unauthorized,
-      '인증 정보가 유효하지 않습니다.',
+      'Authentication information is invalid.',
       userResult.error?.message,
     );
   }
@@ -99,7 +99,7 @@ const resolveInfluencerUser = async (
     return failure(
       500,
       influencerErrorCodes.supabaseFailure,
-      '기본 프로필을 조회하지 못했습니다.',
+      'Failed to fetch the base profile.',
       profileResult.error.message,
     );
   }
@@ -108,7 +108,7 @@ const resolveInfluencerUser = async (
     return failure(
       403,
       influencerErrorCodes.forbidden,
-      '인플루언서 권한이 없습니다.',
+      'You do not have influencer permissions.',
     );
   }
 

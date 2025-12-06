@@ -39,15 +39,15 @@ export const ManageApplicantsDialog = ({
     <Sheet open={open} onOpenChange={onOpenChange}>
       <SheetContent side="right" className="w-full max-w-xl border-slate-200 bg-slate-50 p-6">
         <SheetHeader className="text-left">
-          <SheetTitle className="text-xl font-semibold text-slate-900">인플루언서 선정</SheetTitle>
+          <SheetTitle className="text-xl font-semibold text-slate-900">Approve applicants</SheetTitle>
           <SheetDescription className="text-sm text-slate-600">
-            선택한 지원자를 선정 처리합니다. 필요하다면 선정 메모를 함께 남겨주세요.
+            Approve the selected applicants. Add a note if you want to share context.
           </SheetDescription>
         </SheetHeader>
         <div className="mt-6 space-y-5">
           <div className="rounded-2xl bg-white p-4 shadow-sm">
             <p className="text-sm font-medium text-slate-800">
-              선정 대상 {applicants.length.toLocaleString()}명
+              Selected applicants {applicants.length.toLocaleString()}
             </p>
             <ul className="mt-3 max-h-56 space-y-2 overflow-y-auto text-sm text-slate-600">
               {applicants.map((applicant) => (
@@ -61,7 +61,7 @@ export const ManageApplicantsDialog = ({
             </ul>
           </div>
           <div className="space-y-2">
-            <label className="text-sm font-medium text-slate-700">메모 (선택)</label>
+            <label className="text-sm font-medium text-slate-700">Note (optional)</label>
             <Textarea
               rows={4}
               value={note}
@@ -71,7 +71,7 @@ export const ManageApplicantsDialog = ({
                   setNote(nextValue);
                 }
               }}
-              placeholder="선정 사유나 전달 사항이 있다면 입력해주세요."
+              placeholder="Share the reason for approval or any notes."
               disabled={isSubmitting}
             />
             <p className="text-right text-xs text-slate-400">
@@ -85,7 +85,7 @@ export const ManageApplicantsDialog = ({
               onClick={() => onOpenChange(false)}
               disabled={isSubmitting}
             >
-              취소
+              Cancel
             </Button>
             <Button
               type="button"
@@ -93,7 +93,7 @@ export const ManageApplicantsDialog = ({
               disabled={isSubmitting || applicants.length === 0}
               className="bg-slate-900 text-white hover:bg-slate-700"
             >
-              선정 완료
+              Approve
             </Button>
           </div>
         </div>
