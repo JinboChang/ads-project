@@ -128,7 +128,7 @@ export default function DashboardPage({ params }: DashboardPageProps) {
               variant="outline"
               className="border-slate-300 text-slate-900 hover:bg-slate-100"
             >
-              <Link href="/influencer/applications">My applications</Link>
+              <Link href="/influencer/applications">My applications!</Link>
             </Button>
           </div>
 
