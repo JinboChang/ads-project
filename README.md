@@ -1,12 +1,32 @@
 # SuperNext
 
-A production-ready Next.js 15 template bootstrapped with EasyNext and tuned for rapid feature delivery.
+An advertiser and influencer matching platform built on Next.js 15 with a Hono API and Supabase.
+
+## What This Is
+- A platform that connects advertisers with influencers and manages campaign discovery, matching, and collaboration.
+- A client-first UI stack with React 19, shadcn/ui, and Tailwind CSS.
+- A backend layer powered by Hono that lives inside the Next.js App Router.
+- A Supabase-backed data layer with migrations stored in this repo.
+
+## Who This Is For
+- Advertisers looking to discover creators and manage partnership workflows.
+- Influencers seeking brand partnerships and campaign opportunities.
+- Teams maintaining or extending the matching platform with a strict, documented architecture.
 
 ## Overview
 - App Router architecture with a Hono backend mounted under `app/api/[[...hono]]`.
 - Supabase integration (service-role on server, anon on client) validated by Zod.
 - Client-only UI built with React 19, shadcn/ui, Tailwind CSS 4, and @tanstack/react-query.
 - Opinionated tooling: ESLint, TypeScript, Playwright, Turbopack-friendly dev workflow.
+
+## Architecture At A Glance
+```
+Client component
+  -> React Query hook
+  -> @/lib/remote/api-client
+  -> /api/[[...hono]] (Hono app)
+  -> Supabase
+```
 
 ## Tech Stack
 - Frameworks: Next.js 15, React 19, Hono
