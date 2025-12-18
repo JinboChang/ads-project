@@ -2,6 +2,8 @@
 
 An advertiser and influencer matching platform built on Next.js 15 with a Hono API and Supabase.
 
+Temporary prototype: https://supernext-khaki.vercel.app/
+
 ## What This Is
 - A platform that connects advertisers with influencers and manages campaign discovery, matching, and collaboration.
 - A client-first UI stack with React 19, shadcn/ui, and Tailwind CSS.
